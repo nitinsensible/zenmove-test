@@ -62,6 +62,10 @@
 					<li><a href="#/signup">Signup</a></li>
 					<li><a href="#/login">Login</a></li>
 					<!-- /ko -->
+					<!-- ko if:curuser -->
+					<li><a href="elements/user-elements/hired-helpers.html" rel="address:/user-dashboard/main/hired-helpers">My Profile</a></li>
+					<li><a href="javascript:window.zenApp.logout()">Logout</a></li>
+					<!-- /ko -->
 				</ul>
 			</div>
 			<div class="h-cog off"></div>

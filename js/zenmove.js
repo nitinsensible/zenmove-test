@@ -65,9 +65,10 @@ $(document).ready(function() {
     $("#signup-form").submit(function () {
         email = $("#signup-email").val();
         password = $("#signup-password").val();
-        username = $("#name").val();
+        name = $("#name").val();
         citystate = $("#citystate").val();
-        window.zenApp.signup(username,password,email,citystate);
+        type = "user";
+        window.zenApp.signup(name,password,email,citystate,type);
     });
 
     //login

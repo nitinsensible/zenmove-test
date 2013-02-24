@@ -11,14 +11,15 @@ ZenApp = function() {
 }
 
 
-ZenApp.prototype.signup = function(username,password,email,citystate){
+ZenApp.prototype.signup = function(name,password,email,citystate,type){
 
 	var user = new Parse.User();
-	user.set("name", username);
+	user.set("name",name);
 	user.set("username", email);
 	user.set("password", password);
 	user.set("email", email);
 	user.set("citystate", citystate);
+	user.set("type", type);
 
 	user.signUp(null, {
  		success: function(user) {
@@ -53,4 +54,6 @@ ZenApp.prototype.login = function(username,password){
 
 ZenApp.prototype.logout = function(){
 	Parse.User.logOut()
+	self.zenApp.curuser(null);
+	location.hash = "/home";
 };
