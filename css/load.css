@@ -1,0 +1,207 @@
+/* Load Spinner ========= */
+
+    .load-spinner {
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        background: transparent;
+        z-index: 100;
+        top: 0;
+        left: 0;
+    }
+    .floating-bars-wrap {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%; -moz-border-radius: 50%; -webkit-border-radius: 50%;
+        position: fixed;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        top: 45%;
+        background: rgba(70,70,70,.1);
+        box-shadow: 0px 0px 150px rgba(0,0,0,.2); -moz-box-shadow: 0px 0px 150px rgba(0,0,0,.2); -webkit-box-shadow: 0px 0px 150px rgba(0,0,0,.2);
+    }
+
+#floatingBarsG{
+position: fixed;
+left: 0;
+right: 0;
+margin-left: auto;
+margin-right: auto;
+top: 45%;
+width:62px;
+height:77px;
+
+}
+
+.blockG{
+position:absolute;
+background-color:#FFFFFF;
+width:10px;
+height:24px;
+-moz-border-radius:8px 8px 0 0;
+-webkit-border-radius:8px 8px 0 0;
+-webkit-transform:scale(0.4);
+-webkit-animation-name:fadeG;
+-webkit-animation-duration:.8s;
+-webkit-animation-iteration-count:infinite;
+-webkit-animation-direction:linear;
+-moz-transform:scale(0.4);
+-moz-animation-name:fadeG;
+-moz-animation-duration:.8s;
+-moz-animation-iteration-count:infinite;
+-moz-animation-direction:linear;
+border-radius:8px 8px 0 0;
+-o-transform:scale(0.4);
+-o-animation-name:fadeG;
+-o-animation-duration:.8s;
+-o-animation-iteration-count:infinite;
+-o-animation-direction:linear;
+-ms-transform:scale(0.4);
+-ms-animation-name:fadeG;
+-ms-animation-duration:.8s;
+-ms-animation-iteration-count:infinite;
+-ms-animation-direction:linear;
+}
+
+#rotateG_01{
+left:0;
+top:28px;
+-webkit-animation-delay:0.1s;
+-webkit-transform:rotate(-90deg);
+-moz-animation-delay:0.1s;
+-moz-transform:rotate(-90deg);
+-o-animation-delay:0.1s;
+-o-transform:rotate(-90deg);
+-ms-animation-delay:0.1s;
+-ms-transform:rotate(-90deg);
+}
+
+#rotateG_02{
+left:8px;
+top:10px;
+-webkit-animation-delay:0.2s;
+-webkit-transform:rotate(-45deg);
+-moz-animation-delay:0.2s;
+-moz-transform:rotate(-45deg);
+-o-animation-delay:0.2s;
+-o-transform:rotate(-45deg);
+-ms-animation-delay:0.2s;
+-ms-transform:rotate(-45deg);
+}
+
+#rotateG_03{
+left:26px;
+top:3px;
+-webkit-animation-delay:0.3s;
+-webkit-transform:rotate(0deg);
+-moz-animation-delay:0.3s;
+-moz-transform:rotate(0deg);
+-o-animation-delay:0.3s;
+-o-transform:rotate(0deg);
+-ms-animation-delay:0.3s;
+-ms-transform:rotate(0deg);
+}
+
+#rotateG_04{
+right:8px;
+top:10px;
+-webkit-animation-delay:0.4s;
+-webkit-transform:rotate(45deg);
+-moz-animation-delay:0.4s;
+-moz-transform:rotate(45deg);
+-o-animation-delay:0.4s;
+-o-transform:rotate(45deg);
+-ms-animation-delay:0.4s;
+-ms-transform:rotate(45deg);
+}
+
+#rotateG_05{
+right:0;
+top:28px;
+-webkit-animation-delay:0.5s;
+-webkit-transform:rotate(90deg);
+-moz-animation-delay:0.5s;
+-moz-transform:rotate(90deg);
+-o-animation-delay:0.5s;
+-o-transform:rotate(90deg);
+-ms-animation-delay:0.5s;
+-ms-transform:rotate(90deg);
+}
+
+#rotateG_06{
+right:8px;
+bottom:7px;
+-webkit-animation-delay:.6s;
+-webkit-transform:rotate(135deg);
+-moz-animation-delay:.6s;
+-moz-transform:rotate(135deg);
+-o-animation-delay:.6s;
+-o-transform:rotate(135deg);
+-ms-animation-delay:.6s;
+-ms-transform:rotate(135deg);
+}
+
+#rotateG_07{
+bottom:0;
+left:26px;
+-webkit-animation-delay:.7s;
+-webkit-transform:rotate(180deg);
+-moz-animation-delay:.7s;
+-moz-transform:rotate(180deg);
+-o-animation-delay:.7s;
+-o-transform:rotate(180deg);
+-ms-animation-delay:.7s;
+-ms-transform:rotate(180deg);
+}
+
+#rotateG_08{
+left:8px;
+bottom:7px;
+-webkit-animation-delay:.8s;
+-webkit-transform:rotate(-135deg);
+-moz-animation-delay:.8s;
+-moz-transform:rotate(-135deg);
+-o-animation-delay:.8s;
+-o-transform:rotate(-135deg);
+-ms-animation-delay:.8s;
+-ms-transform:rotate(-135deg);
+}
+
+@-webkit-keyframes fadeG{
+0%{
+background-color:#3e5c7a}
+
+100%{
+background-color:#FFFFFF}
+
+}
+
+@-moz-keyframes fadeG{
+0%{
+background-color:#3e5c7a}
+
+100%{
+background-color:#FFFFFF}
+
+}
+
+@-o-keyframes fadeG{
+0%{
+background-color:#3e5c7a}
+
+100%{
+background-color:#FFFFFF}
+
+}
+
+@-ms-keyframes fadeG{
+0%{
+background-color:#3e5c7a}
+
+100%{
+background-color:#FFFFFF}
+
+}

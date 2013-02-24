@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+<!-- test -->
+	<!-- Basic Page Needs
+  ================================================== -->
+	<meta charset="utf-8">
+	<title>Zenmove - The peer to peer marketplace for moving and services.</title>
+	<meta name="description" content="Get help finding an apartment or moving! Hire local movers and apartment scouts in your area!">
+	<meta name="author" content="">
+
+	<!-- Mobile Specific Metas
+  ================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- JQuery & Pages
+	============================================ -->
+	<script src="js/jquery-1.9.1.js"></script>
+	<script src="js/jquery-transit.js"></script>
+	<script src="js/path.min.js"></script>
+	<script type='text/javascript' src='https://cdn.firebase.com/v0/firebase.js'></script>
+	<script type="text/javascript" src="https://cdn.firebase.com/v0/firebase-auth-client.js"></script>
+	<script src="js/firebase.js"></script>
+	<script src="js/routes.js"></script>
+
+	<!-- CSS
+  ================================================== -->
+	<link href='http://fonts.googleapis.com/css?family=Lato:400,700,700italic' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="css/skeleton.css">
+	<link rel="stylesheet" href="css/layout.css">
+	<link rel="stylesheet" href="css/load.css">
+	<link rel="stylesheet" href="css/keyframes.css">
+	<link rel="stylesheet" href="css/zebra_datepicker.css">
+
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Favicons
+	================================================== -->
+	<link rel="shortcut icon" href="img/favicon.ico">
+	<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png">
+
+</head>
+<body>
+	<div class="body-bg"></div>
+	<!-- Primary Page Layout
+	================================================== -->
+	<div class="header">
+		<div class="container">
+			<a class="main-logo-link" href="#/home"><img class="main-logo" src="img/z-logo.png" /></a>
+			<div class="top-right-nav">
+				<ul>
+					<li><a href="#/how-it-works">How It Works</a></li>
+					<li><a href="#/signup">Signup</a></li>
+					<li><a href="#/login">Login</a></li>
+				</ul>
+			</div>
+			<div class="h-cog off"></div>
+		</div>
+	</div>
+	<div class="container body-wrap"> <!-- container body start -->
+		<div class="clear header-end"></div>
+		<div class="page-body"> <!-- Append body content here -->
+
+			<div class="home-body pg" id="pg1" data-level="1" style="display: none;"> <!-- Main homepage -->
+				<h1 class="center-title main-title">Moving sucks, get some help.</h1>
+				<div class="ten-main center-el alpha omega">
+					<div class="content-box no-bottom">
+						<h3 style="color: #656565;font-weight: normal;">I need help with...</h3>
+						<ul class="help-list">
+						    <li onclick="helpList1();"><span class="h-bg"></span><span class="h-title">Packing & Moving</span></li>
+						    <li onclick="helpList2();"><span class="h-bg"></span><span class="h-title">Finding A Place</span></li>
+						</ul>
+					</div>
+				</div>
+				<div class="clear"></div>
+				<div class="services-link">
+					<a onclick="provideService();">I want to provide services</a>
+				</div>
+				<hr>
+				<h3 class="stats"><span>30,000</span> movers and <span>24,300</span> apartment scouts in <span>150</span> cities.</h3>
+				<hr>
+			</div>
+
+
+
+			<div class="moving-main pg" id="pg2" data-level="1" style="display: none;"> <!-- Moving posting screen -->
+				<div class="sixteen columns">
+					<h3 class="center-title">Whether it's a house-full or one piece ... Let our Movers do it.</h3>
+				</div>
+				<div class="clear"></div>
+				<div class="progress-bar">
+					<div class="progress-bar-inner"></div>
+					<img src="img/checkmark.png" style="display: none;"/>
+				</div>
+				<div class="ten-main center-el alpha omega">
+					<div class="content-box center-el">
+						<form method="post" class="move-request-form" id="move-request-form" name="move-request-form" onsubmit="return false;">
+							<div class="step-1">
+								<label>Job Type:</label>
+								<ul class="job-list">
+									<li onclick="includepacking();"><span class="packing-border"></span><span class="j-bg"></span><span class="j-title">Packing Help</span></li>
+									<li onclick="smallMoving();"><span class="j-bg"></span><span class="j-title">Small Move</span></li>
+									<li onclick="bigMoving();"><span class="j-bg"></span><span class="j-title">Big Move</span></li>
+								</ul>
+								<hr>
+								<div class="inline">
+									<label>Start Address:</label>
+									<input type="text" placeholder="Enter the starting address" name="mr-starting-address" id="mr-starting-address" />
+									<a class="loc-href">Use my current location</a>
+								</div>
+								<div class="inline">
+									<label>End Address: (Optional)</label>
+									<input type="text" placeholder="Enter the ending address" name="mr-endinging-address" id="mr-ending-address" />
+									<a class="loc-href">Use my current location</a>
+								</div>
+								<div class="space-area-mini"></div>
+								<div class="form-nav">
+									<button class="next blue-grad" onclick="move_request.step1();">Continue</button>
+									<a class="cancel" href="#/home">Cancel</a>
+								</div>
+								<div class="clear"></div>
+							</div>
+							<div class="step-2" style="display: none;">
+								<label>Description:</label>
+								<textarea name="move-request-descrip" id="move-request-descrip" placeholder="Give us the details..."></textarea>
+								<label>Move Date & Time:</label>
+								<select id="move-date" name="move-date">
+									<option value="0" selected="selected">Today</option>
+									<option value="1">Tomorrow</option>
+									<option value="2">December 3, 2012</option>
+									<option value="3">December 4, 2012</option>
+									<option value="4">December 5, 2012</option>
+									<option value="5">December 6, 2012</option>
+									<option value="6">December 7, 2012</option>
+									<option value="7">December 8, 2012</option>
+									<option value="8">December 9, 2012</option>
+									<option value="9">December 10, 2012</option>
+									<option value="10">December 11, 2012</option>
+									<option value="11">December 12, 2012</option>
+									<option value="12">December 13, 2012</option>
+									<option value="13">December 14, 2012</option>
+								</select>
+								<select id="move-time" name="move-time">
+									<option value="0">1 am</option>
+									<option value="1">2 am</option>
+									<option value="2">3 am</option>
+									<option value="3">4 am</option>
+									<option value="4">5 am</option>
+									<option value="5">6 am</option>
+									<option value="6">7 am</option>
+									<option value="7">8 am</option>
+									<option value="8">9 am</option>
+									<option value="9">10 am</option>
+									<option value="10">11 am</option>
+									<option value="12" selected="selected">Noon</option>
+									<option value="13">1 pm</option>
+									<option value="14">2 pm</option>
+									<option value="15">3 pm</option>
+									<option value="16">4 pm</option>
+									<option value="17">5 pm</option>
+									<option value="18">6 pm</option>
+									<option value="19">7 pm</option>
+									<option value="20">8 pm</option>
+									<option value="21">9 pm</option>
+									<option value="22">10 pm</option>
+									<option value="23">11 pm</option>
+									<option value="24">Midnight</option>
+								</select>
+								<div class="space-area-mini"></div>
+								<div class="form-nav">
+									<input type="submit" value="Finish & Submit!" id="move-request-submit" class="blue-grad" onclick="move_request.step2();"/>
+									<a class="back">Go Back</a>
+								</div>
+								<div class="clear"></div>
+							</div>
+							<input type="hidden" id="packing" name="packing" value="" /> <!-- 1 = packing, blank = no -->
+							<input type="hidden" id="job-type" name="job-type" value="" /> <!-- 1 = small move, 2 = big move, blank = no -->
+						</form>
+					</div>
+				</div>
+			</div><!-- End Moving Main -->
+
+
+
+			<div class="finding-main pg" id="pg3" data-level="1" style="display: none;"> <!-- Scout request main -->
+				<div class="sixteen columns">
+					<h3 class="center-title">Our Scouts can help you find the perfect place, make calls, set appointments, and more!</h3>
+				</div>
+
+				<div class="clear"></div>
+				<div class="progress-bar">
+					<div class="progress-bar-inner"></div>
+					<img src="img/checkmark.png" style="display: none;"/>
+				</div>
+
+				<div class="ten-main center-el alpha omega">
+					<div class="content-box center-el">
+						<form method="post" class="scout-request-form" onsubmit="return false;">
+							<div class="step-1">
+								<label>I need a scout to: (click all that apply)</label>
+								<ul class="scout-list">
+									<li onclick="findClick();"><span class="s-bg"></span><span class="s-title">Find Places</span></li>
+									<li onclick="aptClick();"><span class="s-bg"></span><span class="s-title">Set Appts</span></li>
+									<li onclick="driveClick();"><span class="s-bg"></span><span class="s-title">Drive Me</span></li>
+								</ul>
+								<input type="hidden" id="find-place" value="0" name="find-place" />
+								<input type="hidden" id="set-apt" value="0" name="set-apt" />
+								<input type="hidden" id="drive-me" value="0" name="drive-me" />
+								<hr>
+								<label>Add locations: (zip, city, neighborhood)</label>
+								<input name="tags" id="tags" value=" " />
+
+								<div class="form-nav">
+									<button class="next blue-grad" onclick="scout_request.step1();">Continue</button>
+									<a class="cancel" href="#/home">Cancel</a>
+								</div>
+								<div class="clear"></div>
+							</div>
+							<div class="step-2" style="display: none;">
+								<div class="third">
+									<label>Monthly budget:</label>
+									<input type="number" name="monthly-budget" id="monthly-budget" placeholder="ie: $1,200" />
+								</div>
+								<div class="third">
+									<label># of bedrooms:</label>
+									<input type="number" name="bedrooms-number" id="bedrooms-number" placeholder="1, 2, 3..." />
+								</div>
+								<div class="third">
+									<label># of bathrooms:</label>
+									<input type="number" name="bathrooms-number" id="bathrooms-number" placeholder="1, 2, 3..." />
+								</div>
+								<hr>
+								<label>Move in date:</label>
+								<input type="text" name="move-in-date" id="move-in-date" readonly="readonly" />
+								<label>Any more details:</label>
+								<textarea placeholder="amenities, instructions, other info..." id="location-description" name="location-description"></textarea>
+								<div class="form-nav">
+									<input type="submit" value="Finish & Submit!" id="scout-request-submit" class="blue-grad" onclick="scout_request.step2();" />
+									<a class="back">Go Back</a>
+								</div>
+								<div class="clear"></div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div><!-- End of scout request form -->
+
+
+
+			<div class="not-found pg" id="pg4" data-level="1" style="display: none;"> <!-- Not found page -->
+				<div class="sixteen columns">
+					<h3 class="center-title">Woah! This page doesn't exist, y'all don't come back now, ya hear?</h3>
+					<div class="clear"></div>
+					<br>
+					<img class="scale-with-grid" src="img/sad-smiley.png" />
+				</div>
+				<div class="clear"></div>
+
+				<div class="clear"></div>
+			</div><!-- End of not found page -->
+
+
+
+			<div class="user-dashboard pg" id="pg5" data-level="2" style="display: none;"> <!-- Start user dashboard -->
+				<div class="grabber off" onclick="panelFire();">
+				    <div class="arrow-right"></div>
+				    <div class="c-line top-c"></div>
+				    <div class="c-line"></div>
+				    <div class="c-line"></div>
+				</div>
+				<div class="four columns">
+				    <div class="control-panel">
+					<ul>
+					    <li class="gray-grad"><a href="#/user-dashboard/hired">Dashboard</a></li>
+					    <li class="gray-grad"><a href="#/user-dashboard/post">Post New Listing</a></li>
+					    <li class="gray-grad"><a href="#/user-dashboard/messages">Messages</a></li>
+					    <li class="gray-grad"><a href="#/user-dashboard/my-profile">My Profile</a></li>
+					    <li class="gray-grad"><a href="#/user-dashboard/payments">Payments</a></li>
+					</ul>
+				    </div>
+				</div>
+				<div class="twelve columns">
+				    <ul class="dash-master">
+					<li class="dashboard-content" id="t1" data-level="3" data-parent="pg5" style="display: none;"> <!-- Dashboard Content -->
+					    <ul class="sub-tabs">
+						<li><a href="#/user-dashboard/hired">Hired Helpers</a></li>
+						<li><a href="#/user-dashboard/listings">Your Listings</a></li>
+						<li><a href="#/user-dashboard/search">Search Helpers</a></li>
+					    </ul>
+					    <div class="hires-main" id="st1" data-level="4" data-parent="t1" data-parent2="pg5" style="display: none;"> <!-- Main hires tab -->
+						<a class="archive-link">Archived Helpers</a>
+						<h3 class="hire-main-title">Your Hires:</h3>
+						<h5 class="actionable" style="display: none;">You have <span>0 invoice(s)</span> and <span>0 rating(s)</span> to do!</h5>
+					    </div> <!-- End main hires tab -->
+					    <div class="listings-main" id="st2" data-level="4" data-parent="t1" data-parent2="pg5" style="display: none;"> <!-- Main lists tab -->
+						<div class="lists-box">
+						    <h3>Your Listings:</h3>
+						</div>
+					    </div>
+					    <div class="search-main" id="st3" data-level="4" data-parent="t1" data-parent2="pg5" style="display: none;"> <!-- Start Search Main -->
+						<h3>Search Helpers:</h3>
+						<div class="search-filter">
+						    <form method="post" onsubmit="return false;"> <!-- Start Search Filter Form -->
+							<div class="third">
+							    <label>Zip Code</label>
+							    <input type="number" id="zip" name="zip" placeholder="ie: 90028" />
+							</div>
+							<div class="third">
+							    <label>Helper Type:</label>
+							    <p id="mover-choose" class="mover-choose" onclick="">Mover</p>
+							    <p id="scout-choose" class="scout-choose" onclick="">Scout</p>
+							    <input type="hidden" value=" " name="helper-type" id="helper-type" />
+							</div>
+							<div class="third">
+							    <button class="blue-grad center-el" id="search-submit" type="submit" name="search-submit"><span>Search</span><img src="img/ajax-loader.gif" style="display: none;" /></button>
+							</div>
+						    </form> <!-- End Search Filter Form -->
+						</div>
+						<div class="clear"></div>
+						<h5 class="results-zip">Helpers near you:</h5>
+
+						<!-- Start Search Results of Helpers -->
+						<div id="search-helpers-content" class="search-results-box">
+
+						</div> <!-- End Of All Search Results -->
+						<button class="blue-grad center-el" id="user-search-load-more"><span>Load More</span></button>
+					    </div> <!-- End Search Main -->
+
+					</li> <!-- End dashboard content -->
+					<li class="post-new-list" id ="t2" data-level="3" data-parent="pg5" style="display: none;"> <!-- Posting page -->
+					    <div class="content-box">
+						<h3 style="text-align: center;">I need help with...</h3>
+						<ul class="help-list">
+						    <li onclick="helpList1();"><span class="h-bg"></span><span class="h-title">Packing & Moving</span></li>
+						    <li onclick="helpList2();"><span class="h-bg"></span><span class="h-title">Finding A Place</span></li>
+						</ul>
+					    </div>
+					</li> <!-- End posting page -->
+					<li class="messages" id="t3" data-level="3" data-parent="pg5" style="display: none;"> <!-- Start messages -->
+					    <h3>Messages:</h3>
+					    <div class="one-message on">
+						<img class="thumb" src="img/headshot-2.png" />
+						<h5 class="msg-sender"><a href="elements/user-elements/helper-profile.html" rel="address:/user-dashboard/helper-profile">Sender name here</a></h5>
+						<h5 class="convo"><a href="elements/user-elements/message-body.html" rel="address:/user-dashboard/message-body">"I think we should exchange addre..."</a></h5>
+						<div class="msg-notif"></div>
+						<div class="clear"></div>
+					    </div>
+					    <div class="one-message off">
+						<img class="thumb" src="img/headshot-2.png" />
+						<h5 class="msg-sender"><a href="elements/user-elements/helper-profile.html" rel="address:/user-dashboard/helper-profile">Sender name here</a></h5>
+						<h5 class="convo"><a href="elements/user-elements/message-body.html" rel="address:/user-dashboard/message-body">"I think we should exchange addre..."</a></h5>
+						<div class="msg-notif"></div>
+						<div class="clear"></div>
+					    </div>
+					</li> <!-- End Messages -->
+					<li class="profile-content" id="t4" data-level="3" data-parent="pg5" style="display: none;"> <!-- My profile -->
+
+					</li> <!-- End my profile -->
+					<li class="payments-content" id="t5" data-level="3" data-parent="pg5" style="display: none;"> <!-- Payments -->
+					    <h4 class="on-file">Your payment history:</h4>
+					    <div class="clear"></div>
+					    <div class="one-payment"> <!-- Start one payment -->
+						<p>Date Paid: <span>10/03/13</span></p>
+						<p>Type: <span>Scout Listing</span></p>
+						<p>Paid To: <span>Travis Skweres</span></p>
+						<p>Amount Paid: <span>$150.00</span></p>
+						<div class="clear"></div>
+					    </div> <!-- End one payment -->
+					    <div class="one-payment"> <!-- Start one payment -->
+						<p>Date Paid: <span>10/03/13</span></p>
+						<p>Type: <span>Mover Listing</span></p>
+						<p>Paid To: <span>Alex Smith</span></p>
+						<p>Amount Paid: <span>$250.00</span></p>
+						<div class="clear"></div>
+					    </div> <!-- End one payment -->
+					</li> <!-- End payments -->
+
+					<div class="view-applicants-box" id="t6" data-parent="pg5" style="display: none;"> <!-- list of applicants -->
+					    <p class="go-back" onclick="history.go(-1);">&lt; &nbsp; Go Back</p>
+					    <div class="content-box">
+						<h4 class="center-text">Applicants for - Mover Listing Posted On 10/3/13</h4>
+					    </div>
+					</div> <!-- End view applicants box -->
+
+					<div class="archived-helpers-list" id="t7" data-parent="pg5" style="display: none;"> <!-- Archived helpers -->
+					    <p class="go-back" onclick="history.go(-1);">&lt; &nbsp; Go Back</p>
+					    <div class="content-box">
+						<h3>Archived Helpers:</h3>
+					    </div>
+					</div>
+
+					<div class="view-this-listing" style="display: none;" id="t8" data-parent="pg5"> <!-- View full listing box -->
+					</div> <!-- End view full listing box -->
+
+					<div class="message-body" style="display: none;" id="t9" data-parent="pg5"> <!-- Start message body -->
+					    <p onclick="history.go(-1);" class="go-back">&lt; &nbsp; Go Back</p>
+					    <div class="content-box">
+						<h5 class="center-text">Conversation with Helper Name</h5>
+						<div class="chat-holder">
+						    <div class="you-said">
+							<h5>You said:</h5>
+							<h6 class="sent-on">Sent on: 10/03/13 at 8:15pm</h6>
+							<blockquote class="you-said-border">
+							    <p>This is a blockquote that is styled to look like a speech bubble</p>
+							</blockquote>
+						    </div>
+						    <div class="they-said">
+							<h5>They said:</h5>
+							<h6 class="sent-on">Sent on: 10/03/13 at 8:15pm</h6>
+							<blockquote class="they-said-border">
+							    <p>This is a blockquote that is styled to look like a speech bubble test test test test test test test test</p>
+							</blockquote>
+						    </div>
+
+						    <div class="clear"></div> <!-- Clear floating messages -->
+						</div>
+						<form class="chat-form" id="chat-form" name="chat-form" method="post" onsubmit="return false;">
+						    <label>Reply:</label>
+						    <textarea id="chat-text" name="chat-text"></textarea>
+						    <input type="submit" name="submit" id="submit" class="gray-grad" value="Send" />
+						</form>
+					    </div>
+					</div> <!-- End message body -->
+				    </ul>
+				</div>
+			</div> <!-- End User Dashboard -->
+
+
+			<div class="helper-dashboard pg" id="pg6" data-level="2" style="display: none;"> <!-- Start Helper Dashboard -->
+				<div class="grabber off" onclick="panelFire();">
+				    <div class="arrow-right"></div>
+				    <div class="c-line top-c"></div>
+				    <div class="c-line"></div>
+				    <div class="c-line"></div>
+				</div>
+				<div class="four columns">
+				    <div class="control-panel">
+					<ul>
+					    <li class="gray-grad"><a href="#/helper-dashboard">Dashboard</a></li>
+					    <li class="gray-grad"><a href="#/helper-dashboard/search">Search Listings</a></li>
+					    <li class="gray-grad"><a href="#/helper-dashboard/messages">Messages</a></li>
+					    <li class="gray-grad"><a href="#/helper-dashboard/my-profile">My Profile</a></li>
+					    <li class="gray-grad"><a href="#/helper-dashboard/payments">Payments</a></li>
+					</ul>
+				    </div>
+				</div>
+				<div class="twelve columns">
+				    <ul class="dash-master">
+					<li class="dashboard-content" id="ht1" data-level="3" style="display: none;">
+						<p class="invite-notif">You have <span>2 invites</span>!</p>
+						<div class="content-box">
+						    <div class="hired-jobs">
+							<h3 class="hire-main-title">Hired Jobs:</h3>
+							<h5 class="actionable" style="display: none;">You have <span>0 client(s)</span> to leave a rating for!</h5>
+							<!--<div class="one-job">
+							    <div class="hired-left">
+								<p class="client-tag">Your Client:</p>
+								<img class="hired-img" src="img/headshot-2.png">
+								<h5>Travis Skweres</h5>
+							    </div>
+							    <div class="hired-right">
+								<ul class="hire-info">
+								    <li>Hired on: <span>10/03/2013</span></li>
+								    <li>Hired for: <span>Travis' moving list yay! This is the title</span></li>
+								</ul>
+								<!--<p class="no-action">
+								<ul class="hire-commands">
+								    <li class="p-invoice active"><span class="hh-bg"></span><span class="hh-title">Send Invoice</span></li>
+								    <li class="r-rating active"><span class="hh-bg"></span><span class="hh-title">Rate Customer</span></li>
+								</ul>
+								<ul class="hire-options">
+								    <li class="complete-go">Mark Complete</li>
+								    <li class="look-listing">See Listing</li>
+								    <li class="look-user-profile">Client Profile</li>
+								    <li><a href="mailto:example@example.com">Send Email</a></li>
+								</ul>
+							    </div>
+							    <div class="clear"></div>
+							</div>-->
+						    </div>
+						    <div class="job-invites" style="display: none;">
+							<p class="invite-back">&lt; Back</p>
+							<h3 class="pad-top">Your Invites:</h3>
+						    </div>
+						</div>
+					</li>
+
+					<li class="search-listings" id="ht2" data-level="3" style="display: none;">
+						<div class="content-box">
+						    <div class="search-main-page">
+							<h3>Search Listings:</h3>
+							<div class="search-listings-filter">
+							    <form method="post" onsubmit="return false;"> <!-- Start Search Listings Filter Form -->
+								<div class="third">
+								    <label>Zip Code</label>
+								    <input type="number" id="zip" name="zip" placeholder="ie: 90028" />
+								</div>
+								<div class="third">
+								    <label>List Type:</label>
+								    <p id="mover-choose" class="mover-choose" onclick="">Mover</p>
+								    <p id="scout-choose" class="scout-choose" onclick="">Scout</p>
+								    <input type="hidden" value=" " name="listing-type" id="listing-type" />
+								</div>
+								<div class="third">
+								    <button class="blue-grad center-el" id="search-submit" type="submit" name="search-submit"><span>Search</span></button>
+								</div>
+							    </form> <!-- End Search Filter Form -->
+							</div>
+							<div class="clear"></div>
+							<h5 class="ztitle"><span>Helper requests near you:</h5>
+							<button class="blue-grad center-el" id="helper-search-load-more"><span>Load More</span></button>
+						    </div>
+						    <div class="view-this-listing" style="display: none;"> <!-- View full listing box -->
+							<div class="mover-request-listing">
+							    <p class="list-back">&lt; Back</p>
+							    <div class="listing-body">
+								<img class="icon-type" src="img/box-icon.png" />
+								<h6 class="posted-on">List posted on: <span>10/13/2013</span></h6>
+								<h2 class="listing-title">This is a moving job for Travis</h2>
+								<div class="clear"></div>
+								<hr>
+								<div class="box first-box">
+								    <span class="row-label">Job Type:</span>
+								    <div class="box-in">
+									<span class="j-big">&nbsp;</span> <!-- classes for medium and just packing are j-med and j-small -->
+									<span class="mt">Big Move</span>
+								    </div>
+								</div>
+								<div class="box calendar">
+								    <span class="row-label">Moving Date:</span>
+								    <div class="box-in">
+									<span class="calendar-month">December</span>
+									<span class="calendar-day">12</span>
+								    </div>
+								</div>
+								<div class="box clock">
+								    <span class="row-label">Moving Time:</span>
+								    <div class="box-in">
+									<div class="clock-left"></div>
+									<div class="clock-right"></div>
+									<div class="hour-wrap">
+									    <span class="hour">12</span>
+									    <span class="am-pm">PM</span>
+									</div>
+								    </div>
+								</div>
+								<div class="clear"></div>
+								<hr>
+								<ul class="map-holder">
+								    <li class="map">
+									<h4 style="text-align: center;line-height: 160px;">map goes here</h4>
+								    </li>
+								    <li class="l-description">this is the description. this is the description. this is the description. this is the description. this is the description. this is the description. this is the description. this is the description.</li>
+								</ul>
+								<div class="clear"></div>
+								<a class="show-post" href="#">View User's Profile</a> <!-- This should link to their profile page with a back button to go back to the listing -->
+								<div class="clear"></div>
+							    </div>
+							</div> <!-- End Listing -->
+							<!-- <div class="scout-request-listing">
+							    <p class="list-back">&lt; Back</p>
+							    <div class="listing-body">
+								<img class="icon-type" src="img/magnifying.png" />
+								<h6 class="posted-on">List posted on: <span>10/13/2013</span></h6>
+								<h2 class="listing-title">Scout an apartment in: <span>90064, Los Angeles, Westwood, Century City, 90210</span></h2>
+								<div class="clear"></div>
+								<hr>
+								<div class="box first-box">
+								    <span class="row-label">Duties:</span>
+								    <div class="box-in">
+									<span class="scout-duties s1">Find Me A Place</span>
+									<span class="scout-duties s2">Set Appointments</span>
+									<span class="scout-duties s3">Drive Me</span>
+								    </div>
+								</div>
+								<div class="box calendar">
+								    <span class="row-label">Move-In Date:</span>
+								    <div class="box-in">
+									<span class="calendar-month">December</span>
+									<span class="calendar-day">1</span>
+								    </div>
+								</div>
+								<div class="box">
+								    <span class="row-label">Rental Specs:</span>
+								    <div class="box-in specs">
+									<p>bed:<span>1</span></p>
+									<p>bath:<span>2</span></p>
+									<p>rent:<span>$1500</span></p>
+								    </div>
+								</div>
+								<div class="clear"></div>
+								<hr>
+								<ul class="map-holder">
+								    <li class="map">
+									<h4 style="text-align: center;line-height: 160px;">map goes here</h4>
+								    </li>
+								    <li class="l-description">this is the description. this is the description. this is the description. this is the description. this is the description. this is the description. this is the description. this is the description.</li>
+								</ul>
+								<div class="clear"></div>
+								<a class="show-post" href="#">View User's Profile</a>
+								<div class="clear"></div>
+							    </div>
+							</div> <!-- End Listing -->
+						    </div> <!-- End view full listing box -->
+						</div>
+					</li>
+
+					<li class="messages" id="ht3" data-level="3" style="display: none;">
+						<h1>We're working on it... :)</h1>
+					</li>
+
+					<li class="profile-content" id="ht4" data-level="3" style="display: none;"> <!-- Start helper profile -->
+					</li> <!-- End helper profile -->
+
+					<li class="payments" id="ht5" data-level="3" style="display: none;">
+						<div class="payments-main">
+						    <h4 class="your-balance">Your Balance: <span></span></h4>
+						    <h6 class="float-left">Current paypal email: <span>tskweres@gmail.com</span></h6>
+						    <button class="paypal-set-button gray-grad">Set Paypal Email</button>
+						    <div class="clear"></div>
+						    <hr>
+						    <div class="one-payment-invoice"> <!-- Start one payment received -->
+							<p>Date Sent: <span>10/03/13</span></p>
+							<p>For: <span>Scout Listing</span></p>
+							<p>Paid From: <span>Travis Skweres</span></p>
+							<p>Amount Invoiced: <span>$250.00</span></p>
+							<div class="clear"></div>
+						    </div> <!-- End one payment received -->
+						    <div class="one-payout"> <!-- Start one payout -->
+							<p>Payout Date: <span>10/03/13</span></p>
+							<p>Amount Paid Out: <span>$250.00</span></p>
+							<div class="clear"></div>
+						    </div> <!-- End one payout -->
+					</li>
+
+					<div class="view-this-listing" data-level="3" style="display: none;" id="ht6"> <!-- View full listing box -->
+					</div> <!-- End view full listing box -->
+
+					<div class="job-invites" data-level="3" style="display: none;" id="ht7">
+						<p onclick="history.go(-1);" class="go-back">&lt; &nbsp; Go Back</p>
+						<div class="content-box">
+						    <h3 class="pad-top">Your Invites:</h3>
+						</div>
+					</div>
+					<div class="client-profile" data-level="3" style="display: none;" id="ht8"> <!-- Start client profile -->
+						<p class="go-back" onclick="history.go(-1);">&lt; &nbsp; Go Back</p>
+							<div class="content-box">
+								<div class="profile-image-2">
+								    <img src="img/headshot-2.png">
+								    <div class="work">
+								    <div class="rating">
+									<div class="star-1"></div>
+									<div class="star-2"></div>
+									<div class="star-3"></div>
+									<div class="star-4"></div>
+									<div class="star-5"></div>
+								    </div>
+								    </div>
+								</div>
+								<div class="profile-description">
+								    <ul class="p-specs">
+								    <li><span>Travis Skweres</span></li>
+								    <li>Zip: <span>90064</span></li>
+								    </ul>
+								    <ul class="p-specs-2">
+									<li>Helpers Hired: <span>2</span></li>
+								    </ul>
+
+								    <blockquote class="client-block">I needed help moving so I thought I'd join padhelper!</blockquote>
+								</div>
+							       <!-- <button class="blue-grad msg-call">Send Message</button>-->
+								<div class="clear"></div>
+							</div>
+					</div> <!-- End client profile -->
+				    </ul>
+				</div>
+			</div><!-- End Helper Dashboard -->
+
+			<!-- Content section -->
+
+			<div class="div-wrap pg" id="pg7" data-level="1" style="display: none;">
+				<h1 class="center-title">About Us</h1>
+				<blockquote class="sub-center-title">&ldquo;Zenmove is a peer to peer marketplace for moving and moving services.&rdquo;</blockquote>
+
+				<h5 class="paragraph">Zenmove is the coolest thing to come out of Los Angeles, Califoria since sliced bread, even though we're pretty sure that <a href="http://en.wikipedia.org/wiki/Sliced_bread" target="_blank">sliced bread didn't even originate here</a>. Our goal is to make moving from place A to place B a whole lot easier. The reason we're trying to do that is because moving is really tough:</h5>
+
+				<div class="seven columns">
+				    <h3 class="center-title">People Who Are Moving:</h3>
+				    <div class="content-box">
+					<ul class="about-list">
+					    <li>Heavy furniture is...heavy.</li>
+					    <li>Do I want to rent a U-Haul for the tenth time this year?</li>
+					    <li>Calling around to agents and property managers is a terrible hassle.</li>
+					    <li>Coordinating people's schedules? Finding parking at viewings? Forget about it.</li>
+					</ul>
+				    </div>
+				</div>
+				<img class="circle-arrow" src="img/circle-arrow.png" />
+				<div class="seven columns offset-by-two">
+				    <h3 class="center-title">Service Providers:</h3>
+				    <div class="content-box">
+					<ul class="about-list">
+					    <li>Hey, I have a pickup truck, and big muscles.</li>
+					    <li>My moving business, needs more business.</li>
+					    <li>Make some extra cash setting up viewing appointments? Sure!</li>
+					    <li>I know all the properties around town. I'd love to help you!</li>
+					</ul>
+				    </div>
+				</div>
+				<hr>
+				<h3 class="center-text">Zenmove brings these two sides together in one harmonious, awesome marketplace. <a href="elements/content/how-it-works.html" rel="address:/how-it-works">Click here</a> to see how it works!</h3>
+			</div>
+
+
+			<div class="div-wrap pg" id="pg8" data-level="1" style="display: none;">
+				<h1 class="center-title main-title hiwt">Get on-demand help for finding an apartment or moving!</h1>
+				<div class="hiw-box">
+				    <div class="third">
+					<div class="content-box">
+					    <h4>1. <span>Post a listing for moving or scouting.</span></h4>
+					    <hr>
+					    <img src="img/woman-laptop.png" />
+					    <div class="clear"></div>
+					</div>
+				    </div>
+				    <div class="third">
+					<div class="content-box">
+					    <h4>2. <span>Review applicants to see who you like.</span></h4>
+					    <hr>
+					    <img src="img/review-apps.png" />
+					    <div class="clear"></div>
+					</div>
+				    </div>
+				    <div class="third">
+					<div class="content-box">
+					    <h4>3. <span>Hire them to do the heavy lifting!</span></h4>
+					    <hr>
+					    <img src="img/movers-hired.png" />
+					    <div class="clear"></div>
+					</div>
+				    </div>
+				</div>
+				<hr>
+				<h3 class="center-title">Zenmove allows you to hire helpers to:</h3>
+			</div>
+
+
+
+			<div class="div-wrap pg" id="pg9" data-level="1" style="display: none;">
+				<h1>FAQ</h1>
+			</div>
+
+
+			<div class="div-wrap pg" id="pg10" data-level="1" style="display: none;">
+				<h1>Privacy Policy</h1>
+			</div>
+
+
+			<div class="div-wrap pg" id="pg11" data-level="1" style="display: none;">
+				<h1>Terms And Conditions</h1>
+			</div>
+
+
+			<div class="div-wrap pg" id="pg12" data-level="1" style="display: none;">
+				<h1>Contact Us</h1>
+			</div>
+
+			<div class="login-pop" id="pg13" data-level="1" style="display: none;"> <!-- Login Screen -->
+				<div class="seven columns offset-by-fourhalf">
+					<div class="content-box">
+						<h2 class="center-title">Login</h2>
+							<form id="login-form" onsubmit="return false;">
+								<input type="text" placeholder="Enter your email address" id="email" name="email" />
+								<input type="password" placeholder="Enter your password" id="password" name="password" />
+								<input type="submit" value="Let's Go!" class="blue-grad" />
+							</form>
+						<ul class="extra-links">
+							<li><a href="#/signup">I need to sign up first.</a></li>
+							<li><a>Forgot your password?</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			 <div class="signup-pop" id="pg14" data-level="1" style="display: none;"> <!-- Signup Screen -->
+				<div class="seven columns offset-by-fourhalf">
+					<div class="content-box">
+						<h2 class="center-title">Signup - It's Free</h2>
+							<ul class="user-list">
+								<li class="active">I'm a User</li>
+								<li>I'm a Helper</li>
+							</ul>
+							<form onsubmit="return false;" id="signup-form">
+								<input type="text" placeholder="Tell us your name" id="name" name="name" />
+								<input type="text" placeholder="Enter your email address" name="signup-email" id="signup-email" />
+								<input type="password" placeholder="Enter your password" name="signup-password" id="signup-password" />
+								<input type="number" placeholder="Enter your city and state" name="citystate" id="citystate" />
+
+								<!-- Hidden Inputs For User Type: value 0 = User, value 1 = Helper -->
+								<input type="hidden" value="0" id="user-type" name="user-type" />
+
+								<input type="submit" value="Sign Me Up" class="blue-grad" />
+							</form>
+						<ul class="extra-links">
+							<li><a href="#/login">I already have an account.</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+		</div> <!-- End page body -->
+	</div>
+
+	<div class="dash-pop" style="display: none;"> <!-- Start Dashboards Popup -->
+		<div class="inner">
+			<div class="invite-box" id="d1" style="display: none;">
+				<h5>Which listing do you want to invite them to work on?</h4>
+				<form method="post" onsubmit="return false;" id="invite-form" name="invite-form">
+				    <select id="select-lists" name="select-lists">
+					<option value="0" selected="selected">Select One</option>
+				    </select>
+				    <input type="submit" value="Invite" name="invite-submit" id="invite-submit" class="blue-grad" />
+				</form>
+			</div>
+			<div class="success-msg" id="d2" style="display: none;">
+				<h5 class="center-title">Your invite has been successfully sent!</h5>
+			</div>
+			<div class="confirm-hire" id="d3" style="display: none;"> <!-- Popup box to confirm a hire -->
+				<h5>Are you sure you want to hire them?</h5>
+				<button class="blue-grad">Confirm</button>
+			</div>
+			<div class="credit-card-form" id="d4" style="display: none;">
+				<form method="post" onsubmit="return false;">
+				    <div class="cc-1">
+					<h3>Credit Card Form</h3>
+					<hr class="small">
+					<div class="cc-top">
+					    <input type="text" placeholder="Name on card" id="card_name" />
+					    <input type="number" placeholder="Card number" id="card_number" />
+					</div>
+					<div class="cc-right">
+					    <input type="number" placeholder="mm" id="card_month" />
+					    <input type="number" placeholder="yyyy" id="card_year" />
+					    <input type="number" placeholder="cvc" id="card_cvc" />
+					    <img class="cvc-img" src="img/cvc.png" />
+					</div>
+					<div class="clear"></div>
+					<button class="gray-grad cont" onclick="payment.step1();">Save</button>
+				    </div>
+				</form>
+			    </div>
+			<div class="archive-confirm" id="d5" style="display: none;"> <!-- Popup box to confirm archiving a helper -->
+				<h5>So the work is all done. Are you sure you want to archive this helper?</h5>
+				<button class="blue-grad">Confirm</button>
+			</div>
+			<div class="pop-rating" id="d6" style="display: none;">
+				<h5>How did they do? Rate this helper:</h5>
+				<div class="rating">
+				    <div class="star-1"></div>
+				    <div class="star-2"></div>
+				    <div class="star-3"></div>
+				    <div class="star-4"></div>
+				    <div class="star-5"></div>
+				</div>
+				<input type="hidden" id="rating-record" />
+				<button class="blue-grad">Confirm Rating</button>
+			    </div>
+			<div class="pop-pay" id="d7" style="display: none;">
+			</div>
+
+			<!-- Helper Dashboard Stuff -->
+
+			<div class="hire-alert" id="hd1" style="display: none;">
+				<h5>You have been hired! Check your main dashboard tab for more information.</h5>
+				<button class="blue-grad">Close</button>
+			</div>
+			<div class="confirm-complete" id="hd2" style="display: none;">
+				<h5>So the job is done. Are you sure you want to mark this job complete?</h5>
+				<button class="blue-grad">Confirm</button>
+			</div>
+			<div class="apply-confirm" id="hd3" style="display: none;">
+				<h5 class="center-text">Apply to this job?</h5>
+				<button class="blue-grad">Confirm</button>
+			</div>
+			<div class="cancel-invoice-confirm" id="hd4" style="display: none;">
+				<h5 class="center-text">Are you sure you want to cancel this pending invoice?</h5>
+				<button class="blue-grad">Confirm</button>
+			</div>
+			<div class="success-msg" id="hd5" style="display: none;">
+				<!--<h5 class="center-title" style="display: none;">Your invoice has been paid!</h5>
+				<h5 class="center-title" style="display: none;">Your application has been sent!</h5>
+				<h5 class="center-title" style="display: none;">Job completed.</h5>
+				<h5 class="center-title" style="display: none;">Success! Your rating has been recorded.</h5>-->
+			</div>
+			<div class="pop-rating-2" id="hd6" style="display: none;">
+				<h5>How was the job? Rate this client:</h5>
+				<div class="rating">
+				    <div class="star-1"></div>
+				    <div class="star-2"></div>
+				    <div class="star-3"></div>
+				    <div class="star-4"></div>
+				    <div class="star-5"></div>
+				</div>
+				<input type="hidden" id="rating-record" />
+				<button class="blue-grad">Confirm Rating</button>
+			</div>
+			<div class="pop-invoice" id="hd7" style="display: none;">
+			</div>
+			<form class="paypal-set" id="paypal-set hd8" name="paypal-set" onsubmit="return false;" style="display: none;">
+				<h4 class="center-text">Enter Paypal Email:</h4>
+				<input type="email" name="paypal-email" id="paypal-email" class="center-el" />
+				<input type="submit" class="blue-grad center-el" value="Save Email" />
+			</form>
+			<div class="msg-send" id="hd9" style="display: none;">
+				<h4>Send a message to Travis Skweres</h4>
+				<form onsubmit="return false;" id="msg-send" name="msg-send">
+				    <textarea id="msg-text" name="msg-text" placeholder="Your message here..."></textarea>
+				    <input type="submit" value="Send Message" name="msg-submit" id="msg-submit" />
+				</form>
+			</div>
+		</div>
+	</div> <!-- End Dashboards Popup -->
+
+	<div class="load-spinner" style="display: none;"> <!-- Load Spinner -->
+		<div class="floating-bars-wrap">
+			<div id="floatingBarsG">
+				<div class="blockG" id="rotateG_01">
+				</div>
+				<div class="blockG" id="rotateG_02">
+				</div>
+				<div class="blockG" id="rotateG_03">
+				</div>
+				<div class="blockG" id="rotateG_04">
+				</div>
+				<div class="blockG" id="rotateG_05">
+				</div>
+				<div class="blockG" id="rotateG_06">
+				</div>
+				<div class="blockG" id="rotateG_07">
+				</div>
+				<div class="blockG" id="rotateG_08">
+				</div>
+			</div>
+		</div>
+	</div>
+		<div class="footer"> <!-- Start Footer -->
+			<div class="container">
+				<div class="footer-inner">
+					<ul class="social-links">
+						<li><a href="#/user-dashboard/hired"><img src="img/facebook.png" /></a></li>
+						<li><a href="#/helper-dashboard"><img src="img/twitter.png" /></a></li>
+					</ul>
+					<ul class="f-links">
+						<li><a href="#/home">Home</a></li>
+						<li><a href="#/about-us">About Us</a></li>
+						<li><a href="#/how-it-works">How It Works</a></li>
+						<li><a href="#/faq">FAQ</a></li>
+						<li><a href="#/privacy">Privacy Policy</a></li>
+						<li><a href="#/terms">Terms & Conditions</a></li>
+						<li><a href="#/contact-us">Contact Us</a></li>
+					</ul>
+				</div>
+			</div>
+		</div> <!-- End Footer -->
+		<div class="rotate-message" style="display: none;">
+			<img src="img/rotate.png" />
+			<h3>Please rotate your device.</h3>
+		</div>
+
+		<!-- Preload some images -->
+		<div style="display: none;" class="bottom-div">
+			<img src="img/cog-off.png" />
+			<img src="img/cog-on.png" />
+			<img src="img/star.png" />
+			<img src="img/star-b-on.png" />
+			<img src="img/star-b-off.png" />
+		</div>
+
+<!-- End Document
+================================================== -->
+
+<!-- JS
+	============================================ -->
+	<script src="js/jquery.tagsinput.min.js"></script>
+	<script src="js/zebra_datepicker.js"></script>
+	<script src="js/mobile.js"></script>
+	<script src="js/zenmove.js"></script>
+</body>
+</html>
