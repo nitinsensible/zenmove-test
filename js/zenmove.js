@@ -20,6 +20,43 @@ $(document).ready(function() {
         $(".user-dashboard .sub-tabs li a").removeClass("active");
     });
 
+    // Move Request Form
+
+    $("#move-request-form .next").click(function () {
+        $("#move-request-form .step-1").fadeOut(150, function () {
+            $("#move-request-form .step-2").fadeIn(150);
+        });
+        $("#pg2 .progress-bar-inner").transition({ width: '75%'});
+    });
+
+    //go back
+
+    $("#move-request-form .step-2 .back").click(function () {
+        $("#move-request-form .step-2").fadeOut(150, function () {
+            $("#move-request-form .step-1").fadeIn(150);
+        });
+        $("#pg2 .progress-bar-inner").transition({ width: '35%'});
+    });
+
+    // Scout Request Form
+
+     $("#scout-request-form .next").click(function () {
+        $("#scout-request-form .step-1").fadeOut(150, function () {
+            $("#scout-request-form .step-2").fadeIn(150);
+        });
+        $("#pg3 .progress-bar-inner").transition({ width: '75%'});
+    });
+
+    //go back
+
+    $("#scout-request-form .step-2 .back").click(function () {
+        $("#scout-request-form .step-2").fadeOut(150, function () {
+            $("#scout-request-form .step-1").fadeIn(150);
+        });
+        $("#pg3 .progress-bar-inner").transition({ width: '35%'});
+    });
+
+
 
 }); // End document ready ===
 

@@ -10,7 +10,6 @@ var authClient = new FirebaseAuthClient(ZM, function(error, user) {
   }
 });
 
-
 $(document).ready(function () {
 
     $("#login-form").submit(function () {
@@ -35,6 +34,12 @@ $(document).ready(function () {
             console.log(error)
           } else {
             console.log('User Id: ' + user.id + ', Email: ' + user.email);
+                ZM.set({
+                name: user.name,
+                id: user.id,
+                password: user.password,
+                citystate: user.citystate
+            });
           }
         });
     });
