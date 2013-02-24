@@ -21,10 +21,10 @@
 	<script src="js/jquery-1.9.1.js"></script>
 	<script src="js/jquery-transit.js"></script>
 	<script src="js/path.min.js"></script>
-	<script type='text/javascript' src='https://cdn.firebase.com/v0/firebase.js'></script>
-	<script type="text/javascript" src="https://cdn.firebase.com/v0/firebase-auth-client.js"></script>
-	<script src="js/firebase.js"></script>
+	<script src="http://www.parsecdn.com/js/parse-1.2.1.min.js"></script>
+	<script src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.js"></script>
 	<script src="js/routes.js"></script>
+	<script src="js/parse.js"></script>
 
 	<!-- CSS
   ================================================== -->
@@ -58,8 +58,10 @@
 			<div class="top-right-nav">
 				<ul>
 					<li><a href="#/how-it-works">How It Works</a></li>
+					<!-- ko ifnot:curuser -->
 					<li><a href="#/signup">Signup</a></li>
 					<li><a href="#/login">Login</a></li>
+					<!-- /ko -->
 				</ul>
 			</div>
 			<div class="h-cog off"></div>

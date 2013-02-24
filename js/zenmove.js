@@ -1,5 +1,9 @@
 $(document).ready(function() {
 
+    var app = new ZenApp();
+    window.zenApp = app;
+    ko.applyBindings(app)
+    
     // Logo rollover
     $(".main-logo").mouseenter(function () {
         $(this).transition({ rotate: "3deg"}, 30).transition({ rotate: "-3deg"}, 30).transition({ rotate: "3deg"}, 30).transition({ rotate: "-3deg"}, 30).transition({ rotate: "0deg"}, 30)
@@ -57,6 +61,21 @@ $(document).ready(function() {
     });
 
 
+    //signup 
+    $("#signup-form").submit(function () {
+        email = $("#signup-email").val();
+        password = $("#signup-password").val();
+        username = $("#name").val();
+        citystate = $("#citystate").val();
+        window.zenApp.signup(username,password,email,citystate);
+    });
+
+    //login
+    $("#login-form").submit(function () {
+        email = $("#email").val();
+        password = $("#password").val();
+        window.zenApp.login(email,password);
+    });
 
 }); // End document ready ===
 
