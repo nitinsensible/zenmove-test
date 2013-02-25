@@ -132,7 +132,7 @@
     }
     .main-logo-link {
 	width: 240px;
-	height: 80px;
+
 	display: block;
 	float: left;
     }
@@ -1032,7 +1032,7 @@ cursor: pointer;
 .search-result, .applicant-result, .one-hired, .one-job {
     display: block;
     width: 100%;
-    background: #eaf7fe;
+    background: #fff;
     box-shadow: 1px 1px 4px rgba(0,0,0,.4); -moz-box-shadow: 1px 1px 4px rgba(0,0,0,.4); -webkit-box-shadow: 1px 1px 4px rgba(0,0,0,.4);
     border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px;
     height: 60px;
@@ -2459,13 +2459,15 @@ div.box.calendar .box-in {
     margin: 0;
 }
 .hired-left img {
-    max-width: 94%;
-    margin-top: 3px;
-    margin-bottom: 3px;
+    width: 100%;
     display: block;
     margin-left: auto;
     margin-right: auto;
     max-height: 220px;
+     -webkit-border-top-left-radius: 8px;
+    -moz-border-radius-topleft: 8px;
+    border-top-left-radius: 8px;
+    box-shadow: 0px 3px 3px rgba(0,0,0,.5); -moz-box-shadow: 0px 3px 3px rgba(0,0,0,.5); -webkit-box-shadow: 0px 3px 3px rgba(0,0,0,.5);
 }
 .hired-left h5 {
     display: block;
@@ -2533,7 +2535,7 @@ div.box.calendar .box-in {
 }
 .hire-options li {
     display: inline-block;
-    width: 25%;
+    width: 24.5%;
     text-align: center;
     margin-bottom: 0;
     font-weight: bold;
@@ -3338,7 +3340,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feffff', end
 		height: auto;
 	    }
 	    .hire-options li {
-		width: 50%;
+		width: 49.5%;
 		border-radius: 0px; -moz-border-radius: 0px; -webkit-border-radius: 0px;
 		line-height: 40px;
 	    }
@@ -3443,5 +3445,6 @@ COLORS:
 	Super light blue - #eaf7fe;
 	Dark Gray: #656565;
 	Light Gray: #999;
+	Star orange: #ffec6c;
 
 */

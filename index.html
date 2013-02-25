@@ -57,13 +57,13 @@
 			<a class="main-logo-link" href="#/home"><img class="main-logo" src="img/z-logo.png" /></a>
 			<div class="top-right-nav">
 				<ul>
-					<li><a href="#/how-it-works">How It Works</a></li>
 					<!-- ko ifnot:curuser -->
+					<li><a href="#/how-it-works">How It Works</a></li>
 					<li><a href="#/signup">Signup</a></li>
 					<li><a href="#/login">Login</a></li>
 					<!-- /ko -->
 					<!-- ko if:curuser -->
-					<li><a href="elements/user-elements/hired-helpers.html" rel="address:/user-dashboard/main/hired-helpers">My Profile</a></li>
+					<li><a href="#/user-dashboard/hired">My Profile</a></li>
 					<li><a href="javascript:window.zenApp.logout()">Logout</a></li>
 					<!-- /ko -->
 				</ul>
@@ -129,7 +129,7 @@
 								</div>
 								<div class="space-area-mini"></div>
 								<div class="form-nav">
-									<button class="next blue-grad" onclick="move_request.step1();">Continue</button>
+									<button class="next blue-grad">Continue</button>
 									<a class="cancel" href="#/home">Cancel</a>
 								</div>
 								<div class="clear"></div>
@@ -182,7 +182,7 @@
 								</select>
 								<div class="space-area-mini"></div>
 								<div class="form-nav">
-									<input type="submit" value="Finish & Submit!" id="move-request-submit" class="blue-grad" onclick="move_request.step2();"/>
+									<input type="submit" value="Finish & Submit!" id="move-request-submit" class="blue-grad" />
 									<a class="back">Go Back</a>
 								</div>
 								<div class="clear"></div>
@@ -225,7 +225,7 @@
 								<input name="tags" id="tags" value=" " />
 
 								<div class="form-nav">
-									<button class="next blue-grad" onclick="scout_request.step1();">Continue</button>
+									<button class="next blue-grad">Continue</button>
 									<a class="cancel" href="#/home">Cancel</a>
 								</div>
 								<div class="clear"></div>
@@ -249,7 +249,7 @@
 								<label>Any more details:</label>
 								<textarea placeholder="amenities, instructions, other info..." id="location-description" name="location-description"></textarea>
 								<div class="form-nav">
-									<input type="submit" value="Finish & Submit!" id="scout-request-submit" class="blue-grad" onclick="scout_request.step2();" />
+									<input type="submit" value="Finish & Submit!" id="scout-request-submit" class="blue-grad" />
 									<a class="back">Go Back</a>
 								</div>
 								<div class="clear"></div>
@@ -304,7 +304,32 @@
 					    <div class="hires-main" id="st1" data-level="4" data-parent="t1" data-parent2="pg5" style="display: none;"> <!-- Main hires tab -->
 						<a class="archive-link">Archived Helpers</a>
 						<h3 class="hire-main-title">Your Hires:</h3>
-						<h5 class="actionable" style="display: none;">You have <span>0 invoice(s)</span> and <span>0 rating(s)</span> to do!</h5>
+						<h5 class="actionable">You have <span>0 invoice(s)</span> and <span>0 rating(s)</span> to do!</h5>
+
+						<div class="one-hired"> <!-- One hired helper -->
+							<div class="hired-left">
+								<img class="hired-img" src="img/default-headshot.png" />
+								<h5>John Smith</h5>
+							</div>
+							<div class="hired-right">
+								<ul class="hire-info">
+									<li>Hired on: <span>03/13/2013</span></li>
+									<li>Hired for: <span>Moving my couch!</span></li>
+								</ul>
+
+								<ul class="hire-commands">
+									<li class="p-invoice ' + invoice_active +'"><span class="hh-bg"></span><span class="hh-title">Pay Invoice</span></li> <!-- Add Active Class if these are actionable -->
+									<li class="r-rating active"><span class="hh-bg"></span><span class="hh-title">Rate Helper</span></li> <!-- Add Active Class if these are actionable -->
+								</ul>
+								<ul class="hire-options">
+									<li class="archive-go gray-grad">Archive Helper</li>
+									<li class="look-listing gray-grad">See Listing</li>
+									<li class="look-profile gray-grad">View Profile</li>
+									<li><a href="mailto:'+ response.helper.email  +'" class="gray-grad">Send Email</a></li>
+								</ul>
+							</div>
+							<div class="clear"></div>
+						    </div>
 					    </div> <!-- End main hires tab -->
 					    <div class="listings-main" id="st2" data-level="4" data-parent="t1" data-parent2="pg5" style="display: none;"> <!-- Main lists tab -->
 						<div class="lists-box">
