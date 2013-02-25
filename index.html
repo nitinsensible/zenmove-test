@@ -304,7 +304,6 @@
 					    <div class="hires-main" id="st1" data-level="4" data-parent="t1" data-parent2="pg5" style="display: none;"> <!-- Main hires tab -->
 						<a class="archive-link">Archived Helpers</a>
 						<h3 class="hire-main-title">Your Hires:</h3>
-						<h5 class="actionable">You have <span>0 invoice(s)</span> and <span>0 rating(s)</span> to do!</h5>
 
 						<div class="one-hired"> <!-- One hired helper -->
 							<div class="hired-left">
@@ -318,14 +317,14 @@
 								</ul>
 
 								<ul class="hire-commands">
-									<li class="p-invoice ' + invoice_active +'"><span class="hh-bg"></span><span class="hh-title">Pay Invoice</span></li> <!-- Add Active Class if these are actionable -->
+									<li class="p-invoice active"><span class="hh-bg"></span><span class="hh-title">Pay Invoice</span></li> <!-- Add Active Class if these are actionable -->
 									<li class="r-rating active"><span class="hh-bg"></span><span class="hh-title">Rate Helper</span></li> <!-- Add Active Class if these are actionable -->
 								</ul>
 								<ul class="hire-options">
-									<li class="archive-go gray-grad">Archive Helper</li>
 									<li class="look-listing gray-grad">See Listing</li>
 									<li class="look-profile gray-grad">View Profile</li>
-									<li><a href="mailto:'+ response.helper.email  +'" class="gray-grad">Send Email</a></li>
+									<li class="send-helper-email gray-grad">Send Email</li>
+									<li class="archive-go gray-grad">Archive Helper</li>
 								</ul>
 							</div>
 							<div class="clear"></div>
@@ -334,7 +333,64 @@
 					    <div class="listings-main" id="st2" data-level="4" data-parent="t1" data-parent2="pg5" style="display: none;"> <!-- Main lists tab -->
 						<div class="lists-box">
 						    <h3>Your Listings:</h3>
-						</div>
+
+						     <div class="one-list"> <!-- One listing for a Mover Request -->
+							<div class="img-and-type">
+							    <img src="img/box-icon.png" />
+							    <p>Mover Request</p>
+							</div>
+							<div class="dates">
+							    <p>Posted on: <span>03/13/2013</span></p>
+							    <p>Moving date: <span>03/13/2013<span></p>
+							</div>
+							<div class="third">
+								<img src="img/truck.png" />
+								<h6>Small Move</h6>
+							</div>
+							<div class="third">
+							    <div class="number-applicants">
+								<h2>13<span>applicants</span></h2>
+							    </div>
+							</div>
+							<div class="third-last">
+							    <ul class="applicant-buttons">
+							    <li class="look-apps gray-grad">View Applicants</li>
+							    <li class="look-listing gray-grad">See Listing</li>
+							    </ul>
+							</div>
+							<div class="clear"></div>
+							<a class="close-x">&times;</a>
+						    </div>
+						</div> <!-- End mover example -->
+
+						<div class="one-list"> <!-- One listing for a Scout Request -->
+							<div class="img-and-type">
+							    <img src="img/magnifying.png" />
+							    <p>Scout Request</p>
+							</div>
+							<div class="dates">
+							    <p>Posted on: <span>03/13/2013</span></p>
+							    <p>Move in date: <span>03/13/2013</span></p>
+							</div>
+							<div class="third">
+								<h5 class="scout-service">- Find Me Places</h5>
+								<h5 class="scout-service">- Set appointments</h5>
+								<h5 class="scout-service">- Drive Me</h5>
+							</div>
+							<div class="third">
+							    <div class="number-applicants">
+								<h2>32<span>applicants</span></h2>
+							    </div>
+							</div>
+							<div class="third-last">
+							    <ul class="applicant-buttons">
+							    <li class="look-apps gray-grad">View Applicants</li>
+							    <li class="look-listing gray-grad">See Listing</li>
+							    </ul>
+							</div>
+							<div class="clear"></div>
+							<a class="close-x">&times;</a>
+						    </div>
 					    </div>
 					    <div class="search-main" id="st3" data-level="4" data-parent="t1" data-parent2="pg5" style="display: none;"> <!-- Start Search Main -->
 						<h3>Search Helpers:</h3>
@@ -360,6 +416,24 @@
 
 						<!-- Start Search Results of Helpers -->
 						<div id="search-helpers-content" class="search-results-box">
+							<div class="search-result">
+								<img src="img/headshot-2.png" class="thumb">
+								<p class="name">John Smith</p>
+								<p class="type">Mover</p>
+								<div class="rating">
+								    <div class="star-1"></div>
+								    <div class="star-2"></div>
+								    <div class="star-3"></div>
+								    <div class="star-4"></div>
+								    <div class="star-5"></div>
+								</div>
+								<p class="hourly-rate">$35<span>/ hr</span></p>
+								<ul class="candidate-options">
+								    <li class="look-profile gray-grad">View Profile</li>
+								    <li class="invite-call gray-grad">Invite To Listing</li>
+								</ul>
+							    </div>
+							    <div class="clear"></div> <!-- End of one search result -->
 
 						</div> <!-- End Of All Search Results -->
 						<button class="blue-grad center-el" id="user-search-load-more"><span>Load More</span></button>
@@ -393,7 +467,56 @@
 					    </div>
 					</li> <!-- End Messages -->
 					<li class="profile-content" id="t4" data-level="3" data-parent="pg5" style="display: none;"> <!-- My profile -->
+						<div class="content-box">
+							<div class="profile-box"> <!-- Start User Profile -->
+							    <div class="left-box">
+								<img class="profile-main" src="img/headshot-2.png" />
+								<h3>Travis Skweres</h3>
+							    </div>
+							    <div class="right-box">
+								<h4>Helper Type: <span>Mover</span></h4>
+								<h4>Hourly Rate: <span>$35</span></h4>
+								<h4>Rating:</h4>
+								<div class="rating">
+								<div class="star-1"></div>
+								    <div class="star-2"></div>
+								    <div class="star-3"></div>
+								    <div class="star-4"></div>
+								    <div class="star-5"></div>
+								</div>
+								<h4>Location: <span>90064</span></h4>
+								<h5>Description: <span>This is my description. I'm a really great mover!!</span></h5>
+							    </div>
+							    <div class="clear"></div>
+							    <a class="edit-profile">edit profile</a>
+							</div>
+							<div class="profile-edit-box" style="display: none;">
+							    <h5>Change whatever fields you would like and save!</h5>
+							    <form method="post" onsubmit="return false;" id="edit-profile" name="edit-profile">
+								<div class="float-left">
+								    <label>Name:</label>
+								    <input type="text" name="name" id="name" value="" />
+								</div>
+								<div class="float-left">
+								    <label>Zip:</label>
+								    <input type="number" name="zip" id="zip" value="" />
+								</div>
+								<div class="float-left">
+								    <label>Image:</label>
+								    <input type="file" name="profile-image" id="profile-image" value="">
+								</div>
+								<div class="float-left">
+								    <label>Description:</label>
+								    <textarea name="description" id="description">This is my description, I'm a great mover!</textarea>
+								</div>
 
+								<div class="clear"></div>
+								<input type="submit" id="submit" name="submit" value="Save" class="blue-grad" />
+								<a href="#" class="cancel-profile">Cancel</a>
+								<div class="clear"></div>
+							    </form>
+							</div> <!-- End User Profile -->
+						</div>
 					</li> <!-- End my profile -->
 					<li class="payments-content" id="t5" data-level="3" data-parent="pg5" style="display: none;"> <!-- Payments -->
 					    <h4 class="on-file">Your payment history:</h4>
@@ -809,7 +932,7 @@
 					<div class="content-box">
 						<h2 class="center-title">Login</h2>
 							<form id="login-form" onsubmit="return false;">
-								<input type="text" placeholder="Enter your email address" id="email" name="email" />
+								<input type="email" placeholder="Enter your email address" id="email" name="email" />
 								<input type="password" placeholder="Enter your password" id="password" name="password" />
 								<input type="submit" value="Let's Go!" class="blue-grad" />
 							</form>
@@ -826,17 +949,21 @@
 					<div class="content-box">
 						<h2 class="center-title">Signup - It's Free</h2>
 							<ul class="user-list">
-								<li class="active">I'm a User</li>
-								<li>I'm a Helper</li>
+								<li class="gray-grad">I'm a Customer</li>
+								<p>Or</p>
+								<li class="gray-grad" id="#DDD">Mover</li>
+								<li class="gray-grad">Apartment Scout</li>
 							</ul>
-							<form onsubmit="return false;" id="signup-form">
+							<form onsubmit="return false;" id="signup-form" style="display: none;">
+								<p class="form-back">back</p>
 								<input type="text" placeholder="Tell us your name" id="name" name="name" />
-								<input type="text" placeholder="Enter your email address" name="signup-email" id="signup-email" />
+								<input type="email" placeholder="Enter your email address" name="signup-email" id="signup-email" />
 								<input type="password" placeholder="Enter your password" name="signup-password" id="signup-password" />
+								<input type="number" placeholder="What is your hourly rate?" name="hourly-rate" id="hourly-rate" />
 								<input type="number" placeholder="Enter your city and state" name="citystate" id="citystate" />
 
-								<!-- Hidden Inputs For User Type: value 0 = User, value 1 = Helper -->
-								<input type="hidden" value="0" id="user-type" name="user-type" />
+								<!-- Hidden Inputs For User Type: value 0 = User, value 1 = Mover, value 2 = Scout -->
+								<input type="hidden" value="" id="user-type" name="user-type" />
 
 								<input type="submit" value="Sign Me Up" class="blue-grad" />
 							</form>

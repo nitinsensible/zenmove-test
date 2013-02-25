@@ -61,6 +61,26 @@ $(document).ready(function() {
     });
 
 
+    // Signup form choices
+    $(".signup-pop .user-list li").click(function () {
+        var index = $(".signup-pop .user-list li").index(this);
+        $(".signup-pop .user-list").fadeOut(150, function () {
+            if (index === 0) {
+                $("#hourly-rate").hide();
+            }
+            else {
+                $("#hourly-rate").show();
+            }
+            $("#signup-form").fadeIn(150);
+            $("#user-type").val(index);
+        });
+    });
+    $(".signup-pop .form-back").click(function () {
+        $(".signup-pop #signup-form").fadeOut(150, function () {
+            $(".signup-pop .user-list").fadeIn(150);
+        });
+    });
+
     //signup
     $("#signup-form").submit(function () {
         email = $("#signup-email").val();
