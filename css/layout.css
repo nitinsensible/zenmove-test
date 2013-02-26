@@ -1016,17 +1016,21 @@ cursor: pointer;
     margin-bottom: -10px;
     margin-right: -10px;
     width: 60%;
-    background: rgba(255,255,255,.5);
+
+    border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px;
+        display: block;
+        box-shadow: inset 1px 1px 8px rgba(0,0,0,.6); -moz-box-shadow: inset 1px 1px 8px rgba(0,0,0,.6); -webkit-box-shadow: inset 1px 1px 8px rgba(0,0,0,.6);
+        background: rgba(255,255,255,.9);
 }
 .search-main .search-filter label, .search-listings-filter label {
     font-size: 11px;
 }
-.search-main .search-filter input[type="number"], .search-listings-filter input[type="number"] {
+.search-main .search-filter input[type="text"], .search-listings-filter input[type="text"] {
     display: block;
     margin-bottom: 5px;
     height: 20px;
     line-height: 20px;
-    width: 90px;
+    width: 110px;
     padding-left: 2px;
     padding-right: 0px;
     padding-top: 0px;
@@ -1078,12 +1082,13 @@ cursor: pointer;
     background: #fff;
     box-shadow: 1px 1px 4px rgba(0,0,0,.4); -moz-box-shadow: 1px 1px 4px rgba(0,0,0,.4); -webkit-box-shadow: 1px 1px 4px rgba(0,0,0,.4);
     border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px;
-    height: 60px;
+    height: 120px;
     border: 1px solid rgba(76, 130, 151, 0.9);
+    margin-bottom: 20px;
 }
 .search-result .thumb, .applicant-result .thumb, .one-message .thumb {
-    max-height: 50px;
-    margin-top: 5px;
+    max-height: 100px;
+    margin-top: 10px;
     margin-left: 10px;
     float: left;
     display: block;
@@ -1321,16 +1326,19 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', end
 }
 /* == End Messages == */
 
-.search-result .name, .search-result .type, .search-result .zip, .applicant-result .name, .applicant-result .type, .applicant-result .zip {
+.search-result .name, .search-result .zip, .applicant-result .name, .applicant-result .type, .applicant-result .zip {
     float: left;
     margin-left: 20px;
-    line-height: 58px;
+    line-height: 120px;
     font-weight: bold;
-    font-size: 12px;
+    font-size: 16px;
 }
 .search-result .type, .applicant-result .type {
     color: #4ac0ec;
-    margin-left: 30px;
+    position: absolute;
+    margin-top: 90px;
+    margin-left: 115px;
+    font-size: 18px;
 }
 .search-result .zip, .applicant-result .zip {
     margin-left: 30px;
@@ -1353,7 +1361,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', end
     float: left;
     font-size: 20px;
     font-weight: bold;
-    line-height: 58px;
+    line-height: 115px;
     margin-left: 30px;
 }
 .search-result .hourly-rate span, .applicant-result .hourly-rate span {
@@ -1428,7 +1436,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', end
 .search-result .rating, .applicant-result .rating {
     float: left;
     margin-left: 30px;
-    margin-top: 18px;
+    line-height: 125px;
 }
 .rating .star-1, .rating .star-2, .rating .star-3, .rating .star-4, .rating .star-5 {
     width: 20px;
@@ -1516,7 +1524,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', end
 .candidate-options li, .applicant-buttons li {
     display: block;
     text-align: center;
-    line-height: 30px;
+    line-height: 60px;
     margin: 0;
     font-size: 13px;
     font-weight: bold;
@@ -1563,15 +1571,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', end
     margin-right: auto;
     text-align: center;
 }
-#search-load-more span, #search-submit span {
+#search-load-more span, #search-submit span, #search-submit-2 span {
     display: block;
 }
-#search-load-more img, #search-submit img {
+#search-load-more img, #search-submit img, #search-submit-2 omg {
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
-#search-submit {
+#search-submit, #search-submit-2 {
     padding: 0;
     height: 35px;
     width: 100px;
@@ -2973,7 +2981,7 @@ blockquote.sub-center-title {
 		}
 		.applicant-buttons li {
 		    display: inline-block;
-		    width: 50%;
+		    width: 49.5%;
 		    margin: 0;
 		    line-height: 50px;
 		    box-shadow: 0px 0px 3px rgba(0,0,0,.3) !important; -moz-box-shadow: 0px 0px 3px rgba(0,0,0,.3) !important; -webkit-box-shadow: 0px 0px 3px rgba(0,0,0,.3) !important;
@@ -3287,6 +3295,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feffff', end
 	    .grabber .c-line.top-c {
 		margin-top: 3px;
 	    }
+
 	    .control-panel {
 		position: fixed;
 		width: 300px;
@@ -3334,24 +3343,28 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feffff', end
 		-webkit-border-radius: 0;
 		border-radius: 0;
 	    }
+	    .one-hired {
+		padding-bottom: 80px;
+	    }
 	    .hired-left, .hired-right {
-		width: 100%;
+		width: 55%;
 		margin: 0;
 		border-left: none;
 		border-right: none;
+		box-shadow: none;
 	    }
 	    .hired-right {
-		width: 100%;
+		width: 45%;
 	    }
 	    .hired-left img {
-		display: none;
+
 	    }
 	    .hired-left h5 {
-		font-size: 20px;
+		font-size: 14px;
 		margin-top: 5px;
 		line-height: 20px;
 		padding-bottom: 8px;
-		border-bottom: 2px solid rgba(0,0,0,.3);
+
 	    }
 	    .hire-info {
 		float: none;
@@ -3363,28 +3376,36 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feffff', end
 	    .hire-commands {
 		margin-top: 0px;
 		text-align: center;
+		margin-bottom: 44px;
 	    }
 	    .hire-commands li {
-		width: 80px;
-		height: 80px;
+		width: 70px;
+		height: 70px;
 		margin-bottom: 15px;
 		margin-left: 15px;
 		margin-right: 15px;
 	    }
 	    .hire-commands li span.hh-title {
-		margin-top: 85px;
+		margin-top: 75px;
+		font-size: 11px;
 	    }
 	    .hire-commands .hh-bg {
 		height: 60px;
 		width: 60px;
-		margin-left: 10px;
-		margin-top: 10px;
+		margin-left: 5px;
+		margin-top: 5px;
 		background-size: contain;
 	    }
 	    .hire-options {
 		margin-top: 0;
 		display: block;
 		height: auto;
+		position: absolute;
+		left: 1.5px;
+		width: 100%;
+		-webkit-border-bottom-right-radius: 0px;
+		-moz-border-radius-bottomright: 0px;
+		border-bottom-right-radius: 0px;
 	    }
 	    .hire-options li {
 		width: 49.5%;
@@ -3394,6 +3415,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feffff', end
 	    .hire-options li a {
 		border-radius: 0px; -moz-border-radius: 0px; -webkit-border-radius: 0px;
 		line-height: 40px;
+	    }
+	    .hire-options li:last-of-type {
+		-webkit-border-bottom-right-radius: 0px;
+		-moz-border-radius-bottomright: 0px;
+		border-bottom-right-radius: 0px;
 	    }
 
 	    #edit-profile .float-left {
@@ -3435,7 +3461,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feffff', end
 		}
 		.one-list a.close-x {
 		    margin-top: -135px;
-		    right: 5px;
+		    right: -10px;
 		    background: #fff;
 		    border-radius: 50%; -moz-border-radius: 50%; -webkit-border-radius: 50%;
 		    box-shadow: 0px 0px 3px rgba(0,0,0,.5); -moz-box-shadow: 0px 0px 3px rgba(0,0,0,.5); -webkit-box-shadow: 0px 0px 3px rgba(0,0,0,.5);
@@ -3460,6 +3486,33 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feffff', end
 		}
 		body {
 		    padding-top: 10px;
+		}
+		.scout-service {
+		    font-size: 11px !important;
+		    text-align: left !important;
+		    margin-top: 0px;
+		}
+		.scout-service:first-of-type {
+		    margin-top: 15px;
+		}
+		.search-filter {
+		    width: 95% !important;
+		    margin-left: 0 !important;
+		    margin-right: auto !important;
+		    display: block;
+		    float: left;
+		}
+		#search-submit, #search-submit-2 {
+		    width: 80px;
+		    font-size: 12px;
+		    margin-right: -5px !important;
+		}
+		.search-main .search-filter .third p {
+		    font-size: 13px;
+		}
+		.search-main form #city-search {
+		    width: 80px;
+		    margin-bottom: 0;
 		}
 	}
 

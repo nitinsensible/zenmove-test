@@ -397,8 +397,8 @@
 						<div class="search-filter">
 						    <form method="post" onsubmit="return false;"> <!-- Start Search Filter Form -->
 							<div class="third">
-							    <label>Zip Code</label>
-							    <input type="number" id="zip" name="zip" placeholder="ie: 90028" />
+							    <label>City:</label>
+							    <input type="text" id="city-search" name="city-search" placeholder="ie: Los Angeles" />
 							</div>
 							<div class="third">
 							    <label>Helper Type:</label>
@@ -407,7 +407,7 @@
 							    <input type="hidden" value=" " name="helper-type" id="helper-type" />
 							</div>
 							<div class="third">
-							    <button class="blue-grad center-el" id="search-submit" type="submit" name="search-submit"><span>Search</span><img src="img/ajax-loader.gif" style="display: none;" /></button>
+							    <button class="blue-grad" id="search-submit" type="submit" name="search-submit"><span>Search</span><img src="img/ajax-loader.gif" style="display: none;" /></button>
 							</div>
 						    </form> <!-- End Search Filter Form -->
 						</div>
@@ -418,8 +418,8 @@
 						<div id="search-helpers-content" class="search-results-box">
 							<div class="search-result">
 								<img src="img/headshot-2.png" class="thumb">
-								<p class="name">John Smith</p>
 								<p class="type">Mover</p>
+								<p class="name">John Smith Moving Co.</p>
 								<div class="rating">
 								    <div class="star-1"></div>
 								    <div class="star-2"></div>
@@ -432,8 +432,8 @@
 								    <li class="look-profile gray-grad">View Profile</li>
 								    <li class="invite-call gray-grad">Invite To Listing</li>
 								</ul>
-							    </div>
-							    <div class="clear"></div> <!-- End of one search result -->
+							</div>
+							<div class="clear"></div> <!-- End of one search result -->
 
 						</div> <!-- End Of All Search Results -->
 						<button class="blue-grad center-el" id="user-search-load-more"><span>Load More</span></button>
@@ -664,7 +664,7 @@
 								    <input type="hidden" value=" " name="listing-type" id="listing-type" />
 								</div>
 								<div class="third">
-								    <button class="blue-grad center-el" id="search-submit" type="submit" name="search-submit"><span>Search</span></button>
+								    <button class="blue-grad" id="search-submit-2" type="submit" name="search-submit-2"><span>Search</span></button>
 								</div>
 							    </form> <!-- End Search Filter Form -->
 							</div>
