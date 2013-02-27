@@ -205,6 +205,33 @@ $(document).ready(function() {
         Leave("#ht2");
         $(".helper-dashboard .control-panel ul li:eq(1)").removeClass("active");
     });
+    Path.map("#/helper-dashboard/messages").to(function(){
+        Go("#ht3");
+        $(".helper-dashboard .control-panel ul li:eq(2)").addClass("active");
+    }).enter(function() {
+        runRoute("#ht3");
+    }).exit(function () {
+        Leave("#ht3");
+        $(".helper-dashboard .control-panel ul li:eq(2)").removeClass("active");
+    });
+    Path.map("#/helper-dashboard/my-profile").to(function(){
+        Go("#ht4");
+        $(".helper-dashboard .control-panel ul li:eq(3)").addClass("active");
+    }).enter(function() {
+        runRoute("#ht4");
+    }).exit(function () {
+        Leave("#ht4");
+        $(".helper-dashboard .control-panel ul li:eq(3)").removeClass("active");
+    });
+    Path.map("#/helper-dashboard/payments").to(function(){
+        Go("#ht5");
+        $(".helper-dashboard .control-panel ul li:eq(4)").addClass("active");
+    }).enter(function() {
+        runRoute("#ht5");
+    }).exit(function () {
+        Leave("#ht5");
+        $(".helper-dashboard .control-panel ul li:eq(4)").removeClass("active");
+    });
 
 
 

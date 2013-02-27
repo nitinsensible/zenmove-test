@@ -120,8 +120,43 @@ $(document).ready(function() {
             $("#scout-request-form").addClass("posting");
             window.location = '#/login';
             popMessage('Please login or signup to continue posting.');
+        }
+    });
 
+    // Scout request form job choices
+    $("#scout-request-form .scout-list li").click(function () {
+        var index = $("#scout-request-form .scout-list li").index(this);
+        switch(index) {
+            case 0:
+                $(this).toggleClass("active");
+                if ($(this).hasClass("active")) {
+                    $("#find-place").val("1");
 
+                }
+                else {
+                    $("#find-place").val("0");
+                }
+            break;
+            case 1:
+                $(this).toggleClass("active");
+                if ($(this).hasClass("active")) {
+                    $("#set-apt").val("1");
+
+                }
+                else {
+                    $("#set-apt").val("0");
+                }
+            break;
+            case 2:
+                $(this).toggleClass("active");
+                if ($(this).hasClass("active")) {
+                    $("#drive-me").val("1");
+
+                }
+                else {
+                    $("#drive-me").val("0");
+                }
+            break;
         }
     });
 
@@ -136,7 +171,7 @@ $(document).ready(function() {
 
 
     // Signup form choices ==================
-    
+
     $(".signup-pop .user-list li").click(function () {
         var index = $(".signup-pop .user-list li").index(this);
         $(".signup-pop .user-list").fadeOut(150, function () {
