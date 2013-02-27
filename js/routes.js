@@ -183,6 +183,30 @@ $(document).ready(function() {
         $(".user-dashboard .control-panel ul li").removeClass("active");
     });
 
+    // Helper dashboard ==================================
+
+    // Main helper Dashboard path
+    Path.map("#/helper-dashboard").to(function(){
+        Go("#ht1");
+        $(".helper-dashboard .control-panel ul li:eq(0)").addClass("active");
+    }).enter(function() {
+        runRoute("#ht1");
+    }).exit(function () {
+        Leave("#ht1");
+        $(".helper-dashboard .control-panel ul li:eq(0)").removeClass("active");
+    });
+
+    Path.map("#/helper-dashboard/search").to(function(){
+        Go("#ht2");
+        $(".helper-dashboard .control-panel ul li:eq(1)").addClass("active");
+    }).enter(function() {
+        runRoute("#ht2");
+    }).exit(function () {
+        Leave("#ht2");
+        $(".helper-dashboard .control-panel ul li:eq(1)").removeClass("active");
+    });
+
+
 
     //Content Links ===============================================================================
     Path.map("#/about-us").to(function(){

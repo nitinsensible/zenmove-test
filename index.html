@@ -112,9 +112,9 @@
 							<div class="step-1">
 								<label>Job Type:</label>
 								<ul class="job-list">
-									<li onclick="includepacking();"><span class="packing-border"></span><span class="j-bg"></span><span class="j-title">Packing Help</span></li>
-									<li onclick="smallMoving();"><span class="j-bg"></span><span class="j-title">Small Move</span></li>
-									<li onclick="bigMoving();"><span class="j-bg"></span><span class="j-title">Big Move</span></li>
+									<li><span class="packing-border"></span><span class="j-bg"></span><span class="j-title">Packing Help</span></li>
+									<li><span class="j-bg"></span><span class="j-title">Small Move</span></li>
+									<li><span class="j-bg"></span><span class="j-title">Big Move</span></li>
 								</ul>
 								<hr>
 								<div class="inline">
@@ -187,7 +187,7 @@
 								</div>
 								<div class="clear"></div>
 							</div>
-							<input type="hidden" id="packing" name="packing" value="" /> <!-- 1 = packing, blank = no -->
+							<input type="hidden" id="packing" name="packing" value="no" /> <!-- 1 = packing, blank = no -->
 							<input type="hidden" id="job-type" name="job-type" value="" /> <!-- 1 = small move, 2 = big move, blank = no -->
 						</form>
 					</div>
@@ -453,15 +453,15 @@
 					    <h3>Messages:</h3>
 					    <div class="one-message on">
 						<img class="thumb" src="img/headshot-2.png" />
-						<h5 class="msg-sender"><a href="elements/user-elements/helper-profile.html" rel="address:/user-dashboard/helper-profile">Sender name here</a></h5>
-						<h5 class="convo"><a href="elements/user-elements/message-body.html" rel="address:/user-dashboard/message-body">"I think we should exchange addre..."</a></h5>
+						<h5 class="msg-sender"><a>Sender name here</a></h5>
+						<h5 class="convo"><a>"I think we should exchange addre..."</a></h5>
 						<div class="msg-notif"></div>
 						<div class="clear"></div>
 					    </div>
 					    <div class="one-message off">
 						<img class="thumb" src="img/headshot-2.png" />
-						<h5 class="msg-sender"><a href="elements/user-elements/helper-profile.html" rel="address:/user-dashboard/helper-profile">Sender name here</a></h5>
-						<h5 class="convo"><a href="elements/user-elements/message-body.html" rel="address:/user-dashboard/message-body">"I think we should exchange addre..."</a></h5>
+						<h5 class="msg-sender"><a>Sender name here</a></h5>
+						<h5 class="convo"><a>"I think we should exchange addre..."</a></h5>
 						<div class="msg-notif"></div>
 						<div class="clear"></div>
 					    </div>
@@ -608,13 +608,13 @@
 				</div>
 				<div class="twelve columns">
 				    <ul class="dash-master">
-					<li class="dashboard-content" id="ht1" data-level="3" style="display: none;">
+					<li class="dashboard-content" id="ht1" data-level="3" data-parent="pg6" style="display: none;">
 						<p class="invite-notif">You have <span>2 invites</span>!</p>
 						<div class="content-box">
 						    <div class="hired-jobs">
 							<h3 class="hire-main-title">Hired Jobs:</h3>
 							<h5 class="actionable" style="display: none;">You have <span>0 client(s)</span> to leave a rating for!</h5>
-							<!--<div class="one-job">
+							<div class="one-job">
 							    <div class="hired-left">
 								<p class="client-tag">Your Client:</p>
 								<img class="hired-img" src="img/headshot-2.png">
@@ -625,7 +625,7 @@
 								    <li>Hired on: <span>10/03/2013</span></li>
 								    <li>Hired for: <span>Travis' moving list yay! This is the title</span></li>
 								</ul>
-								<!--<p class="no-action">
+								<p class="no-action">
 								<ul class="hire-commands">
 								    <li class="p-invoice active"><span class="hh-bg"></span><span class="hh-title">Send Invoice</span></li>
 								    <li class="r-rating active"><span class="hh-bg"></span><span class="hh-title">Rate Customer</span></li>
@@ -638,7 +638,7 @@
 								</ul>
 							    </div>
 							    <div class="clear"></div>
-							</div>-->
+							</div>
 						    </div>
 						    <div class="job-invites" style="display: none;">
 							<p class="invite-back">&lt; Back</p>
@@ -647,7 +647,7 @@
 						</div>
 					</li>
 
-					<li class="search-listings" id="ht2" data-level="3" style="display: none;">
+					<li class="search-listings" id="ht2" data-level="3" data-parent="pg6" style="display: none;">
 						<div class="content-box">
 						    <div class="search-main-page">
 							<h3>Search Listings:</h3>
@@ -672,8 +672,39 @@
 							<h5 class="ztitle"><span>Helper requests near you:</h5>
 							<button class="blue-grad center-el" id="helper-search-load-more"><span>Load More</span></button>
 						    </div>
-						    <div class="view-this-listing" style="display: none;"> <!-- View full listing box -->
-							<div class="mover-request-listing">
+						</div>
+					</li>
+
+					<li class="messages" id="ht3" data-level="3" data-parent="pg6" style="display: none;">
+						<h1>We're working on it... :)</h1>
+					</li>
+
+					<li class="profile-content" id="ht4" data-level="3" data-parent="pg6" style="display: none;"> <!-- Start helper profile -->
+					</li> <!-- End helper profile -->
+
+					<li class="payments" id="ht5" data-level="3" data-parent="pg6" style="display: none;">
+						<div class="payments-main">
+						    <h4 class="your-balance">Your Balance: <span></span></h4>
+						    <h6 class="float-left">Current paypal email: <span>tskweres@gmail.com</span></h6>
+						    <button class="paypal-set-button gray-grad">Set Paypal Email</button>
+						    <div class="clear"></div>
+						    <hr>
+						    <div class="one-payment-invoice"> <!-- Start one payment received -->
+							<p>Date Sent: <span>10/03/13</span></p>
+							<p>For: <span>Scout Listing</span></p>
+							<p>Paid From: <span>Travis Skweres</span></p>
+							<p>Amount Invoiced: <span>$250.00</span></p>
+							<div class="clear"></div>
+						    </div> <!-- End one payment received -->
+						    <div class="one-payout"> <!-- Start one payout -->
+							<p>Payout Date: <span>10/03/13</span></p>
+							<p>Amount Paid Out: <span>$250.00</span></p>
+							<div class="clear"></div>
+						    </div> <!-- End one payout -->
+					</li>
+
+					<div class="view-this-listing" data-level="3" data-parent="pg6" style="display: none;" id="ht6"> <!-- View full listing box -->
+						<div class="mover-request-listing">
 							    <p class="list-back">&lt; Back</p>
 							    <div class="listing-body">
 								<img class="icon-type" src="img/box-icon.png" />
@@ -717,9 +748,9 @@
 								<div class="clear"></div>
 								<a class="show-post" href="#">View User's Profile</a> <!-- This should link to their profile page with a back button to go back to the listing -->
 								<div class="clear"></div>
-							    </div>
-							</div> <!-- End Listing -->
-							<!-- <div class="scout-request-listing">
+							</div>
+						</div> <!-- End Listing -->
+						<div class="scout-request-listing">
 							    <p class="list-back">&lt; Back</p>
 							    <div class="listing-body">
 								<img class="icon-type" src="img/magnifying.png" />
@@ -761,50 +792,18 @@
 								<div class="clear"></div>
 								<a class="show-post" href="#">View User's Profile</a>
 								<div class="clear"></div>
-							    </div>
-							</div> <!-- End Listing -->
-						    </div> <!-- End view full listing box -->
+							</div>
 						</div>
-					</li>
 
-					<li class="messages" id="ht3" data-level="3" style="display: none;">
-						<h1>We're working on it... :)</h1>
-					</li>
-
-					<li class="profile-content" id="ht4" data-level="3" style="display: none;"> <!-- Start helper profile -->
-					</li> <!-- End helper profile -->
-
-					<li class="payments" id="ht5" data-level="3" style="display: none;">
-						<div class="payments-main">
-						    <h4 class="your-balance">Your Balance: <span></span></h4>
-						    <h6 class="float-left">Current paypal email: <span>tskweres@gmail.com</span></h6>
-						    <button class="paypal-set-button gray-grad">Set Paypal Email</button>
-						    <div class="clear"></div>
-						    <hr>
-						    <div class="one-payment-invoice"> <!-- Start one payment received -->
-							<p>Date Sent: <span>10/03/13</span></p>
-							<p>For: <span>Scout Listing</span></p>
-							<p>Paid From: <span>Travis Skweres</span></p>
-							<p>Amount Invoiced: <span>$250.00</span></p>
-							<div class="clear"></div>
-						    </div> <!-- End one payment received -->
-						    <div class="one-payout"> <!-- Start one payout -->
-							<p>Payout Date: <span>10/03/13</span></p>
-							<p>Amount Paid Out: <span>$250.00</span></p>
-							<div class="clear"></div>
-						    </div> <!-- End one payout -->
-					</li>
-
-					<div class="view-this-listing" data-level="3" style="display: none;" id="ht6"> <!-- View full listing box -->
 					</div> <!-- End view full listing box -->
 
-					<div class="job-invites" data-level="3" style="display: none;" id="ht7">
+					<div class="job-invites" data-level="3" data-parent="pg6" style="display: none;" id="ht7">
 						<p onclick="history.go(-1);" class="go-back">&lt; &nbsp; Go Back</p>
 						<div class="content-box">
 						    <h3 class="pad-top">Your Invites:</h3>
 						</div>
 					</div>
-					<div class="client-profile" data-level="3" style="display: none;" id="ht8"> <!-- Start client profile -->
+					<div class="client-profile" data-level="3" data-parent="pg6" style="display: none;" id="ht8"> <!-- Start client profile -->
 						<p class="go-back" onclick="history.go(-1);">&lt; &nbsp; Go Back</p>
 							<div class="content-box">
 								<div class="profile-image-2">
@@ -833,8 +832,8 @@
 							       <!-- <button class="blue-grad msg-call">Send Message</button>-->
 								<div class="clear"></div>
 							</div>
-					</div> <!-- End client profile -->
-				    </ul>
+						</div> <!-- End client profile -->
+					</ul>
 				</div>
 			</div><!-- End Helper Dashboard -->
 
@@ -870,7 +869,7 @@
 				    </div>
 				</div>
 				<hr>
-				<h3 class="center-text">Zenmove brings these two sides together in one harmonious, awesome marketplace. <a href="elements/content/how-it-works.html" rel="address:/how-it-works">Click here</a> to see how it works!</h3>
+				<h3 class="center-text">Zenmove brings these two sides together in one harmonious, awesome marketplace. <a href="#/how-it-works">Click here</a> to see how it works!</h3>
 			</div>
 
 

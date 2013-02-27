@@ -24,17 +24,78 @@ $(document).ready(function() {
         $(".user-dashboard .sub-tabs li a").removeClass("active");
     });
 
-    // Move Request Form
+    // Move Request Form =========
 
     $("#move-request-form .next").click(function () {
-        $("#move-request-form .step-1").fadeOut(150, function () {
-            $("#move-request-form .step-2").fadeIn(150);
-        });
-        $("#pg2 .progress-bar-inner").transition({ width: '75%'});
+        // check to see if the user is logged in
+        if (Parse.User.current()) {
+            $("#move-request-form .step-1").fadeOut(150, function () {
+                $("#move-request-form .step-2").fadeIn(150);
+            });
+            $("#pg2 .progress-bar-inner").transition({ width: '75%'});
+        }
+        // if user is not logged in, log them in
+        else {
+            // make a note that the user was trying to post a list so we can redirect them back to this form
+            $("#scout-request-form").removeData();
+            $("#move-request-form").data("post", "1");
+            window.location = '#/login';
+        }
+    });
+
+    // job type function
+    $("#move-request-form .job-list li").click(function () {
+        var index = $("#move-request-form .job-list li").index(this);
+        var jobtype = $("#job-type");
+        switch(index) {
+            case 0:
+                $(this).toggleClass("active");
+                var pv = $("#packing").val();
+                if (pv === "no") {
+                    $("#packing").val("yes");
+                }
+                else {
+                    $("#packing").val("no");
+                }
+
+                break;
+            case 1:
+                $("#move-request-form .job-list li:eq(2)").removeClass("active");
+                $(this).addClass("active");
+                var SMM = $("#move-request-form .job-list li:eq(1)");
+                if (SMM.hasClass("active")) {
+                    $("#job-type").attr("value", "smallmove");
+                }
+                else {
+                    $("#job-type").attr("value", "");
+                }
+                break;
+            case 2:
+                $("#move-request-form .job-list li:eq(1)").removeClass("active");
+                $(this).addClass("active");
+                var BM = $("#move-request-form .job-list li:eq(2)");
+                if (BM.hasClass("active")) {
+                    $("#job-type").attr("value", "bigmove");
+                }
+                else {
+                    $("#job-type").attr("value", "");
+                }
+                break;
+        }
+    });
+
+    // Submit move request form
+    $("#move-request-form").submit(function () {
+        packing = $("#packing").val();
+        job_type = $("#job-type").val();
+        start_address = $("#mr-starting-address").val();
+        end_address = $("#mr-ending-address").val();
+        description = $("#move-request-descrip").val();
+        move_date = $("#move-date option:selected").val();
+        move_time = $("#move-time option:selected").val();
     });
 
     //go back
-
     $("#move-request-form .step-2 .back").click(function () {
         $("#move-request-form .step-2").fadeOut(150, function () {
             $("#move-request-form .step-1").fadeIn(150);
@@ -42,13 +103,25 @@ $(document).ready(function() {
         $("#pg2 .progress-bar-inner").transition({ width: '35%'});
     });
 
-    // Scout Request Form
+    // Scout Request Form ========
 
     $("#scout-request-form .next").click(function () {
-        $("#scout-request-form .step-1").fadeOut(150, function () {
-            $("#scout-request-form .step-2").fadeIn(150);
-        });
-        $("#pg3 .progress-bar-inner").transition({ width: '75%'});
+        // check to see if user is logged in
+        if (Parse.User.current()) {
+            $("#scout-request-form .step-1").fadeOut(150, function () {
+                $("#scout-request-form .step-2").fadeIn(150);
+            });
+            $("#pg3 .progress-bar-inner").transition({ width: '75%'});
+        }
+        else {
+            // make a note that the user was trying to post a list so we can redirect them back to this form
+            $("#move-request-form").removeData();
+            $("#scout-request-form").data("post", "1");
+            window.location = '#/login';
+            popMessage('Please login or signup to continue posting.');
+
+
+        }
     });
 
     //go back
@@ -87,7 +160,7 @@ $(document).ready(function() {
         password = $("#signup-password").val();
         name = $("#name").val();
         citystate = $("#citystate").val();
-        type = "user";
+        type = $("#user-type").val();
         window.zenApp.signup(name,password,email,citystate,type);
     });
 
@@ -114,21 +187,19 @@ $(document).ready(function() {
         $(".help-list:visible li:eq(1)").transition({ scale: 1, opacity: 1, delay: 500},1);
     }
 
-    //// Back button support for popup pages
-    //function popFix() {
-    //    $(window).bind("hashchange.popCall", function () {
-    //        $(".popup-wrap").fadeOut(function() {
-    //            $(".popup-wrap").children().children().hide(function() {
-    //                $(".popCall").unbind();
-    //            });
-    //        });
-    //    });
-    //};
-
     function provideService() {
         window.location = "#/signup";
         $("ul.user-list li:eq(1)").trigger("click");
     }
     function slideOver() {
         $(this).slideDown();
+    }
+
+    var popMessage = function (message) {
+        $('<div class="global-pop"><div class="inner"><h4 class="center-title">' + message + '</h4></div></div>').insertAfter(".dash-pop");
+        $(".global-pop").click(function () {
+            $(this).fadeOut(150, function () {
+               $(this).remove();
+            });
+        });
     }

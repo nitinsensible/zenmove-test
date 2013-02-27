@@ -1,13 +1,12 @@
 
 ZenApp = function() {
 	var self = this;
-	self.curuser = ko.observable();   
+	self.curuser = ko.observable();
 	Parse.initialize("fMLJJUor4ucCMbAVJVv3uDouSq4oh1TKdUP28AeX", "sVUg1cdf8g2m8knobEPRTrrz0KOxF4PT9tcR7AJn");
 	var currentUser = Parse.User.current();
 	if (currentUser) {
 	    self.curuser(currentUser);
-	} 
-
+	}
 }
 
 
@@ -55,5 +54,15 @@ ZenApp.prototype.login = function(username,password){
 ZenApp.prototype.logout = function(){
 	Parse.User.logOut()
 	self.zenApp.curuser(null);
-	location.hash = "/home";
+	location.hash = "#/home";
+};
+
+// Scout & Move Post ===
+
+ZenApp.prototype.scoutPost = function() {
+
+};
+
+ZenApp.prototype.movePost = function() {
+
 };
