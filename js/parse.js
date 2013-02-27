@@ -23,9 +23,17 @@ ZenApp.prototype.signup = function(name,password,email,citystate,type){
 	user.signUp(null, {
  		success: function(user) {
  			//redirect to dashboard
-    		alert("user registered successfully")
-    		window.zenApp.curuser(user);
-    		location.hash = "/user-dashboard/hired";
+			alert("user registered successfully")
+			window.zenApp.curuser(user);
+			if ($("#scout-request-form").hasClass("posting")) {
+				location.hash = "/scout-request";
+			}
+			else if ($("#move-request-form").hasClass("posting")) {
+				location.hash = "/move-request";
+			}
+			else {
+				location.hash = "/user-dashboard/hired";
+			}
   		},
   		error: function(user, error) {
     		//Show the error message somewhere and let the user try again.
@@ -41,7 +49,15 @@ ZenApp.prototype.login = function(username,password){
 	    // Do stuff after successful login.
 	    window.zenApp.curuser(user);
 
-	    location.hash = "/user-dashboard/hired";
+		if ($("#scout-request-form").hasClass("posting")) {
+			location.hash = "/scout-request";
+		}
+		else if ($("#move-request-form").hasClass("posting")) {
+			location.hash = "/move-request";
+		}
+		else {
+			location.hash = "/user-dashboard/hired";
+		}
 	  },
 	  error: function(user, error) {
 	    // The login failed. Check error to see why.

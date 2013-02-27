@@ -37,9 +37,10 @@ $(document).ready(function() {
         // if user is not logged in, log them in
         else {
             // make a note that the user was trying to post a list so we can redirect them back to this form
-            $("#scout-request-form").removeData();
-            $("#move-request-form").data("post", "1");
+            $("#scout-request-form").removeClass("posting");
+            $("#move-request-form").addClass("posting");
             window.location = '#/login';
+            popMessage('Please login or signup to continue posting.');
         }
     });
 
@@ -115,8 +116,8 @@ $(document).ready(function() {
         }
         else {
             // make a note that the user was trying to post a list so we can redirect them back to this form
-            $("#move-request-form").removeData();
-            $("#scout-request-form").data("post", "1");
+            $("#move-request-form").removeClass("posting");
+            $("#scout-request-form").addClass("posting");
             window.location = '#/login';
             popMessage('Please login or signup to continue posting.');
 
@@ -134,7 +135,8 @@ $(document).ready(function() {
     });
 
 
-    // Signup form choices
+    // Signup form choices ==================
+    
     $(".signup-pop .user-list li").click(function () {
         var index = $(".signup-pop .user-list li").index(this);
         $(".signup-pop .user-list").fadeOut(150, function () {
