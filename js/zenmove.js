@@ -1,8 +1,5 @@
 $(document).ready(function() {
 
-    var app = new ZenApp();
-    window.zenApp = app;
-    ko.applyBindings(app)
 
     // Logo rollover
     $(".main-logo").mouseenter(function () {
