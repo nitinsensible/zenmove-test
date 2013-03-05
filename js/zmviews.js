@@ -132,9 +132,21 @@ $(function() {
 	    }
 	});
 
-	new AppView;
+	var AppRouter = Parse.Router.extend({
+	    routes: {
+            "*actions": "defaultRoute" // matches http://example.com/#anything-here
+        }
+
+	});
+
+	var app_router = new AppRouter;
+
+    app_router.on('route:defaultRoute', function(actions) {
+    })
+
+
+  	new AppView;
+  	Parse.history.start();
 
 });
-
-	  // The main view for the app
  
