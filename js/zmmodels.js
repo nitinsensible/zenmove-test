@@ -89,7 +89,7 @@ var ZenPost = Parse.Object.extend("ZenPost", {
 });
 
 var ZenPostList = Parse.Collection.extend({
-    model: Post
+    model: ZenPost
 });
 
 /* Move Related Posting */
@@ -107,7 +107,7 @@ var ZenMessage = Parse.Object.extend("ZenMessage", {
 });
 
 var MessageList = Parse.Collection.extend({
-    model: Message
+    model: ZenMessage
 });
 
 /* Extend Parse.User to add some utility functions*/

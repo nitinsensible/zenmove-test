@@ -24,7 +24,7 @@ $(function() {
 	      
 	      Parse.User.logIn(username, password, {
 	        success: function(user) {
-	        	alert("login successfull");
+	        	new DashboardView();
 	        },
 
 	        error: function(user, error) {
@@ -48,9 +48,76 @@ $(function() {
 	    }
   	});
 
+	var PostSelectionView = Parse.View.extend({
+	    
+	    events: {
+	    	"click span": "newPost"
+	    },
+
+	    el: "ul.dash-master",
+
+	    initialize: function() {
+	      _.bindAll(this, "newPost");
+	      this.render();
+	    },
+
+	    render: function() {
+	      this.$el.html(_.template($("#t2").html()));
+	      this.delegateEvents();
+	    },
+
+	    newPost: function(e){
+	      if (Parse.User.current()) {
+	        new AddMoverPost();
+	      } else {
+	        new LogInView();
+	      }
+	    }
+	});
+
+	var AddMoverPost = Parse.View.extend({
+		events: {},
+		el: "#content",
+
+		initialize: function() {
+	      this.render();
+	    },
+
+		render: function() {
+	      this.$el.html(_.template($("#pg2").html()));
+	      this.delegateEvents();
+	    },
+
+	});
+	var DashboardView = Parse.View.extend({
+		events: {
+	      "click #newpost": "postSelection"
+	    },
+
+	    el: "#content",
+
+	   	initialize: function() {
+	      _.bindAll(this, "postSelection");
+	      this.render();
+	    },
+
+	   	render: function() {
+	      this.$el.html(_.template($("#pg5").html()));
+	      this.delegateEvents();
+	    },
+
+	    postSelection: function(e){
+	      if (Parse.User.current()) {
+	        new PostSelectionView();
+	      } else {
+	        new LogInView();
+	      }
+	    }
+
+	});
 
 	var AppView = Parse.View.extend({
-	    el: $("#container"),
+	    el: $("#main"),
 
 	    initialize: function() {
 	      this.render();
@@ -63,7 +130,7 @@ $(function() {
 	        new LogInView();
 	      }
 	    }
-	  });
+	});
 
 	new AppView;
 
