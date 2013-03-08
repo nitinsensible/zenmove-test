@@ -25,7 +25,54 @@
 	<script src="js/zmviews.js"></script>    
 </head>
 <body>
-    <div id="content">{% block content %}{% endblock %}</div>
+	<div class="body-bg"></div>
+	<!-- Primary Page Layout
+	================================================== -->
+	<div id="main">
+		<div class="header">
+			<div class="container">
+				<a class="main-logo-link" href="#/home"><img class="main-logo" src="img/z-logo.png" /></a>
+				<div class="top-right-nav">
+					<ul>
+						<li><a href="#/how-it-works">How It Works</a></li>
+						<li><a href="#/signup">Signup</a></li>
+						<li><a href="#/login">Login</a></li>
+						<li><a href="#/user-dashboard/hired">My Profile</a></li>
+						<li><a href="javascript:Parse.User.logOut">Logout</a></li>
+					</ul>
+				</div>
+				<% Parse.User.current() %>
+				<div class="h-cog off"></div>
+			</div>
+		</div>
+		<div class="container body-wrap" id="container"> <!-- container body start -->
+			<div class="clear header-end"></div>
+			<div class="page-body" id="content"> <!-- Append body content here -->
+			{% block content %}{% endblock %}
+			</div> <!-- End page body -->
+		</div>
+
+		<div class="footer"> <!-- Start Footer -->
+			<div class="container">
+				<div class="footer-inner">
+					<ul class="social-links">
+						<li><a href="#/user-dashboard/hired"><img src="img/facebook.png" /></a></li>
+						<li><a href="#/helper-dashboard"><img src="img/twitter.png" /></a></li>
+					</ul>
+					<ul class="f-links">
+						<li><a href="#/home">Home</a></li>
+						<li><a href="#/about-us">About Us</a></li>
+						<li><a href="#/how-it-works">How It Works</a></li>
+						<li><a href="#/faq">FAQ</a></li>
+						<li><a href="#/privacy">Privacy Policy</a></li>
+						<li><a href="#/terms">Terms & Conditions</a></li>
+						<li><a href="#/contact-us">Contact Us</a></li>
+					</ul>
+				</div>
+			</div>
+		</div> <!-- End Footer -->
+	</div>
+	    
     <script type="text/javascript">
     {% block javascript %}
     
