@@ -1,0 +1,3 @@
+*.log
+*.pyc
+/parseproto/build/build.cfg
