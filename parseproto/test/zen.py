@@ -6,6 +6,7 @@ simple test server for testing Travis Zenmove code.
 independently
 (c) build.py then combines all individual templates into a single html file.
 '''
+import logging
 import os
 import urlparse
 import urllib2
@@ -23,11 +24,13 @@ urls = (
 class ZenMoveTemplate(object):    
     def GET(self, templatename):
         root_path = os.environ['ROOT_PATH']
-        template_path = os.path.join(root_path, 'templates')
+        template_path = os.path.join(root_path, 'templates')        
         try:
+            templatename = 'tests/%s' % templatename
             render = template.render_jinja(template_path)
-            return getattr(render, templatename, '')
+            return getattr(render, templatename, '')()
         except:
+            logging.exception("got an error in loading %s" %templatename)
             return 'template %s not found' % templatename
 
 class ZenMoveStatic(object):    
@@ -43,7 +46,14 @@ class ZenMoveStatic(object):
 if __name__ == "__main__":
     #change the current directory to one level up so that the template/js
     #etc work.
-    os.environ['ROOT_PATH'] = os.path.abspath(os.path.join(os.getcwd(), '..'))
+    curdir = os.getcwd()
+    logging.basicConfig(level=logging.DEBUG,
+                    format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
+                    datefmt='%m-%d %H:%M',
+                    filename=os.path.join(curdir, 'zen.log'),
+                    filemode='w')
+
+    os.environ['ROOT_PATH'] = os.path.abspath(os.path.join(curdir, '..'))
     
     app = web.application(urls, globals())
     app.run()
