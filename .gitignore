@@ -1,0 +1,2 @@
+*.log
+/parseproto/test/*.pyc
