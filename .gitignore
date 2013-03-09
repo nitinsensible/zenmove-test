@@ -1,2 +1,3 @@
 *.log
-/parseproto/test/*.pyc
+*.pyc
+/parseproto/build/build.cfg
