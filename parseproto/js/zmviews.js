@@ -27,12 +27,47 @@ var ZenApp = function() {
 
 var MovePostViewModel = function(post) {
 	var self = this;
-    self.post = ko.observable(post);
-	self.step = ko.observable('start');
+    self.step = ko.observable('start');
+	
+	self.post = ko.observable(post);	
+	self.postvm= kb.viewModel(post);
+	self.move_date = ko.observable('today');
+	self.move_time = ko.observable('Noon')
+	
+	function _update_movedate() {
+		var mv_date = self.move_date();
+		var mv_time = self.move_time();
+		self.postvm.move_date(mv_date + ' ' + mv_time);
+	}
+	
+	self.started = ko.computed(function() {
+		var step = self.step();
+		return (step == 'step1' || step == 'step2');
+	});
 	
 	self.movePostStart = function() {
 		self.step('step1');
+		console.log('start address ', self.postvm.start_address());
+		console.log('end address ', self.postvm.end_address());
 	}
 	
+	self.movePostStep2 = function() {
+		self.step('step2');
+		console.log('start address ', self.postvm.start_address());
+		console.log('end address ', self.postvm.end_address());
+	}
+	
+	self.setJobType = function(type) {
+		self.postvm.job_type(type);
+	}
+	
+	
+	self.createMovePost = function() {
+		// TODO : Create ZenPost in Parse.
+		_update_movedate();
+		
+		
+		return false; // dont use normal form submit
+	}
 	return self;
 };

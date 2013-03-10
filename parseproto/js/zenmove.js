@@ -12,7 +12,7 @@ $(document).ready(function() {
     if (screen.width <= 767) {
          $(".grabber").appendTo('.header .container');
     }
-    $(".control-panel li").click(panelFire);
+    //$(".control-panel li").click(panelFire);
 
     $(".control-panel li").click(function () {
         $(".control-panel li").removeClass("active");
