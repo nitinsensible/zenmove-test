@@ -76,11 +76,27 @@ $(function() {
 	});
 
 	var AddMoverPost = Parse.View.extend({
-		events: {},
+		events: {"click button" : "submitPost"},
+
 		el: "#content",
 
 		initialize: function() {
+		  this.posts = new ZenPostList;
+		   _.bindAll(this, "submitPost");
 	      this.render();
+	    },
+
+	    submitPost: function(e){
+	      var self = this;
+	      var from = $("#mr-starting-address").val()
+	      var to = $("#mr-ending-address").val()
+	      this.posts.create({
+	        by:  Parse.User.current(),
+	        type:    "mover",
+	        from:  from,
+	        to : to,
+	        ACL: new Parse.ACL(Parse.User.current())
+	      });
 	    },
 
 		render: function() {
