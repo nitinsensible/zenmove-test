@@ -1,24 +1,25 @@
-<script type="text/template" id="t2">    
+<script type="text/template" id="t2">
+    <!-- ko if:step() == 'start' -->
     <li class="post-new-list" id ="t2" data-level="3" data-parent="pg5"> <!-- Posting selection page -->
         <div class="content-box">
         <h3 style="text-align: center;">I need help with...</h3>
         <ul class="help-list">
-            <li id="mover"><span class="h-bg"></span><span class="h-title">Packing & Moving</span></li>
+            <li id="mover" data-bind="click:movePostStart"><span class="h-bg"></span><span class="h-title">Packing & Moving</span></li>
             <li id="scout"><span class="h-bg"></span><span class="h-title">Finding A Place</span></li>
         </ul>
         </div>
-    </li> 
-</script>
-
-<script type="text/template" id="pg2">
-    <div class="moving-main pg" id="pg2" data-level="1" style="display: none;"> <!-- Moving posting screen -->
+    </li>
+    <!-- /ko -->
+    
+    <!-- ko if:step() == 'step1' -->
+    <div class="moving-main pg" id="pg2" data-level="1" > <!-- Moving posting screen -->
         <div class="sixteen columns">
             <h3 class="center-title">Whether its a house-full or one piece ... Let our Movers do it.</h3>
         </div>
         <div class="clear"></div>
         <div class="progress-bar">
             <div class="progress-bar-inner"></div>
-            <img src="img/checkmark.png" style="display: none;"/>
+            <img src="/img/checkmark.png" style="display: none;"/>
         </div>
         <div class="ten-main center-el alpha omega">
             <div class="content-box center-el">
@@ -107,4 +108,6 @@
             </div>
         </div>
     </div><!-- End Moving Main -->
+    <!-- /ko -->
+    
 </script>

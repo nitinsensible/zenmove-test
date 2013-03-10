@@ -10,13 +10,11 @@
 {# include the test initialization script here. #}
 {%block javascript %}
     function init() {
-        var post = new ZenPost();
-        var MovePostViewModel = function(post) {
-            this.post = post;
-        };
-     
+        window.zenApp = new ZenApp();
+        
+        var post = window.zenApp.makeMovePost();
         var view_model = new MovePostViewModel(post);
-     
+
         ko.applyBindings(view_model, $('#mvpost')[0]);    
     }
     $(document).ready(init);

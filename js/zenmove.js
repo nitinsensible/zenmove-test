@@ -12,7 +12,7 @@ $(document).ready(function() {
     if (screen.width <= 767) {
          $(".grabber").appendTo('.header .container');
     }
-    $(".control-panel li").click(panelFire);
+    //$(".control-panel li").click(panelFire);
 
     $(".control-panel li").click(function () {
         $(".control-panel li").removeClass("active");
@@ -83,6 +83,7 @@ $(document).ready(function() {
     });
 
     // Submit move request form
+    /*
     $("#move-request-form").submit(function () {
         packing = $("#packing").val();
         job_type = $("#job-type").val();
@@ -100,7 +101,8 @@ $(document).ready(function() {
         });
         $("#pg2 .progress-bar-inner").transition({ width: '35%'});
     });
-
+    */
+    
     // Scout Request Form ========
 
     $("#scout-request-form .next").click(function () {
