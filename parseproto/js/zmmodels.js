@@ -81,7 +81,8 @@ var ScoutProfile = function(profile) {
 var ZenPost = Parse.Object.extend("ZenPost", {
     defaults: {
         by:null, // Posted by whom
-        job_type:'', // request for packing, moving, small move or large move
+        job_type:'', // request for small move or large move
+        packing:false, //packing required or not. 
         timestamp:new Date(),
         start_address:'',
         end_address:'',

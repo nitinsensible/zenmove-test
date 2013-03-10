@@ -28,9 +28,19 @@
                     <div class="step-1">
                         <label>Job Type:</label>
                         <ul class="job-list">
-                            <li data-bind="click:function() { $data.setJobType('packing')}"><span class="packing-border"></span><span class="j-bg"></span><span class="j-title">Packing Help</span></li>
-                            <li data-bind="click:function() { $data.setJobType('smallmove')}"><span class="j-bg"></span><span class="j-title">Small Move</span></li>
-                            <li data-bind="click:function() { $data.setJobType('bigmove')}"><span class="j-bg"></span><span class="j-title">Big Move</span></li>
+                            <li data-bind="click:togglePacking, css:{'active':postvm.packing}">
+                                <span class="packing-border"></span>
+                                <span class="j-bg"></span>
+                                <span class="j-title">Packing Help</span>
+                            </li>
+                            <li data-bind="click:setSmallMove, css:{'active':isSmallMove}">
+                                <span class="j-bg"></span>
+                                <span class="j-title">Small Move</span>
+                            </li>
+                            <li data-bind="click:setBigMove, css:{'active':isBigMove}">
+                                <span class="j-bg"></span>
+                                <span class="j-title">Big Move</span>
+                            </li>
                         </ul>
                         <hr>
                         <div class="inline">
