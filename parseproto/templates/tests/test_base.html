@@ -19,6 +19,7 @@
     {# Default script includes#}
     <script src="/js/jquery-1.9.1.js"></script>
 	<script src="/js/jquery.tagsinput.min.js"></script>
+	<script src="/js/jquery-transit.js"></script>
 	<script src="/js/underscore.js"></script>
     <script src="http://www.parsecdn.com/js/parse-1.2.1.js"></script>
 	<script src="/js/knockout-2.2.1.js"></script>
@@ -38,14 +39,17 @@
 				<a class="main-logo-link" href="#/home"><img class="main-logo" src="/img/z-logo.png" /></a>
 				<div class="top-right-nav">
 					<ul>
+						<!-- ko ifnot:window.zenApp.curuser -->
 						<li><a href="#/how-it-works">How It Works</a></li>
 						<li><a href="#/signup">Signup</a></li>
 						<li><a href="#/login">Login</a></li>
+						<!-- /ko -->
+						<!-- ko if:window.zenApp.curuser -->
 						<li><a href="#/user-dashboard/hired">My Profile</a></li>
-						<li><a href="javascript:Parse.User.logOut">Logout</a></li>
+						<li><a href="javascript:window.zenApp.logout()">Logout</a></li>
+						<!-- /ko -->
 					</ul>
 				</div>
-				<% Parse.User.current() %>
 				<div class="h-cog off"></div>
 			</div>
 		</div>

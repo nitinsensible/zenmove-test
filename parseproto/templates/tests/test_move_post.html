@@ -3,7 +3,7 @@
 {# include the ko script here. #}
 
 {% block content %}
-    <div id="mvpost" data-bind="template:{name:'t2'}"></div>
+    <div id="mvpost" data-bind="template:{name:'pg1'}"></div>
     {% include "movepost.html" %}
 {%endblock%}
 
@@ -15,7 +15,7 @@
         var post = window.zenApp.makeMovePost();
         var view_model = new MovePostViewModel(post);
 
-        ko.applyBindings(view_model, $('#mvpost')[0]);    
+        ko.applyBindings(view_model);    
     }
     $(document).ready(init);
 {%endblock%}

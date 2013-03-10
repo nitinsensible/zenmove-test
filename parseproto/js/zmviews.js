@@ -6,29 +6,31 @@ var ZenApp = function() {
     Parse.$ = jQuery;
 	Parse.initialize("fMLJJUor4ucCMbAVJVv3uDouSq4oh1TKdUP28AeX", "sVUg1cdf8g2m8knobEPRTrrz0KOxF4PT9tcR7AJn");
     
-    self.curuser = ko.observable();
+    self.curuser = ko.observable(Parse.User.current());
     
-    self.login = function(username, password) {
-        Parse.User.logIn(username, password, {});        
-        var currentUser = Parse.User.current();
-        if (currentUser) {
-            self.curuser(currentUser);
-        }
-    }
+    self.loginvm = new LoginViewModel();
+    self.signup = new SignupViewModel();
 
 	self.makeMovePost = function() {
 		var movepost = new ZenPost();
 		movepost.by = self.curuser();
 		return movepost;
 	}
+
+	self.logout = function(){
+		Parse.User.logOut()
+		self.curuser(null);
+	};
 	
     return self;
 }
 
+
 var MovePostViewModel = function(post) {
 	var self = this;
     self.step = ko.observable('start');
-	
+    self.posts = new ZenPostList;
+
 	self.post = ko.observable(post);	
 	self.postvm= kb.viewModel(post);
 	self.move_date = ko.observable('today');
@@ -77,10 +79,55 @@ var MovePostViewModel = function(post) {
 	}
 	
 	self.createMovePost = function() {
-		// TODO : Create ZenPost in Parse.
 		_update_movedate();
-				
+		self.posts.create({by:Parse.User.current(), start_address:self.postvm.start_address(),end_address:
+			self.postvm.end_address(),job_type:self.postvm.job_type(),description:self.postvm.description(),
+		move_date:self.postvm.move_date(),packing:self.postvm.packing()
+	})
 		return false; // dont use normal form submit
 	}
 	return self;
 };
+
+
+var LoginViewModel = function(){
+	var self = this;
+	self.username = ko.observable();
+	self.password = ko.observable();
+
+	self.login = function() {
+    	username = self.username();
+    	password = self.password();
+        Parse.User.logIn(username, password, {
+        	success:function(user){
+		            window.zenApp.curuser(user);
+		        }
+        });          
+        return false;
+    }
+}
+
+
+var SignupViewModel = function(){
+	var self = this;
+	self.name = ko.observable();
+	self.email = ko.observable();
+	self.password = ko.observable();
+	self.city = ko.observable();
+	self.type = ko.observable();
+
+    self.signup = function(){
+		var user = new Parse.User();
+		user.set("name",self.name());
+		user.set("username", self.email());
+		user.set("password", self.password());
+		user.set("email", self.email());
+		user.set("citystate", self.city());
+		user.set("type", self.type());
+
+		user.signUp(null, {
+	 		success: function(user) {
+				window.zenApp.curuser(user);
+		});
+	}
+}

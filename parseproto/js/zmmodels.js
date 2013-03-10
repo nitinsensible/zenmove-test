@@ -83,11 +83,10 @@ var ZenPost = Parse.Object.extend("ZenPost", {
         by:null, // Posted by whom
         job_type:'', // request for small move or large move
         packing:false, //packing required or not. 
-        timestamp:new Date(),
         start_address:'',
         end_address:'',
         description:'',
-        move_date : new Date()
+        move_date : ''
     },
 
     initialize: function() {}
@@ -138,4 +137,3 @@ Parse.User.prototype.getProfile = function() {
     }
     return profile;
 }
-

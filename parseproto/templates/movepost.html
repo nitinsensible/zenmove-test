@@ -1,14 +1,25 @@
-<script type="text/template" id="t2">
+<script type="text/template" id="pg1">
+    <!-- ko if:window.zenApp.curuser -->
     <!-- ko if:step() == 'start' -->
-    <li class="post-new-list" id ="t2" data-level="3" data-parent="pg5"> <!-- Posting selection page -->
-        <div class="content-box">
-        <h3 style="text-align: center;">I need help with...</h3>
-        <ul class="help-list">
-            <li id="mover" data-bind="click:movePostStart"><span class="h-bg"></span><span class="h-title">Packing & Moving</span></li>
-            <li id="scout"><span class="h-bg"></span><span class="h-title">Finding A Place</span></li>
-        </ul>
-        </div>
-    </li>
+    <div class="home-body pg" id="pg1" data-level="1"> <!-- Main homepage -->
+                <h1 class="center-title main-title">Moving sucks, get some help.</h1>
+                <div class="ten-main center-el alpha omega">
+                    <div class="content-box no-bottom">
+                        <h3 style="color: #656565;font-weight: normal;">I need help with...</h3>
+                        <ul class="help-list">
+                            <li id="mover" data-bind="click:movePostStart"><span class="h-bg"></span><span class="h-title">Packing & Moving</span></li>
+                            <li id="scout"><span class="h-bg"></span><span class="h-title">Finding A Place</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="services-link">
+                    <a onclick="provideService();">I want to provide services</a>
+                </div>
+                <hr>
+                <h3 class="stats"><span>30,000</span> movers and <span>24,300</span> apartment scouts in <span>150</span> cities.</h3>
+                <hr>
+    </div>
     <!-- /ko -->
     
     <!-- ko if:started -->
@@ -122,5 +133,26 @@
         </div>
     </div><!-- End Moving Main -->
     <!-- /ko -->
+    <!-- /ko -->
+    <!-- ko ifnot:window.zenApp.curuser -->
+        <div class="login-pop" id="pg13" data-level="1"> <!-- Login Screen -->
+            <div class="seven columns offset-by-fourhalf">
+                <div class="content-box">
+                    <h2 class="center-title">Login</h2>
+                        <div class="error" style="display:none"></div>
+                        <form id="login-form" data-bind="submit:  window.zenApp.loginvm.login">
+                            <input type="email" placeholder="Enter your email address" id="email" name="email" data-bind="value:window.zenApp.loginvm.username"/>
+                            <input type="password" placeholder="Enter your password" id="password" name="password" data-bind="value:window.zenApp.loginvm.password"/>
+                            <input type="submit" value="Let's Go!" class="blue-grad" />
+                        </form>
+                    <ul class="extra-links">
+                        <li><a id="signup" href="#/signup" >I need to sign up first.</a></li>
+                        <li><a>Forgot your password?</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    <!-- /ko -->
+
     
 </script>
